@@ -1,0 +1,24 @@
+<section class="invitation-section" id="invitation">
+  <div class="container text-center">
+    <h2 class="section-title" data-aos="fade-up">Digital Invitation</h2>
+
+    <div class="card-wrap" data-aos="zoom-in" data-aos-delay="150">
+      <div class="invitation-card" #cardRef>
+        <div class="border-deco top"></div>
+        <p class="eyebrow">Together with their families</p>
+        <p class="family-line">{{ couple.families.groomFamily }} &amp; {{ couple.families.brideFamily }}</p>
+        <h3 class="invite-names">{{ couple.groom.name }}<br><span class="amp">&amp;</span><br>{{ couple.bride.name }}</h3>
+        <p class="invite-line">request the honour of your presence at their wedding</p>
+        <p class="invite-date">{{ couple.weddingDate | date: 'EEEE, MMMM d, y' }}</p>
+        <p class="invite-time">{{ couple.weddingDate | date: 'hh:mm a' }}</p>
+        <p class="invite-venue">{{ venue.name }}<br>{{ venue.address }}</p>
+        <div class="border-deco bottom"></div>
+      </div>
+    </div>
+
+    <button class="btn btn-download mt-4" (click)="download()" [disabled]="isDownloading">
+      <i class="bi bi-download"></i>
+      {{ isDownloading ? 'Preparing...' : 'Download as Image' }}
+    </button>
+  </div>
+</section>

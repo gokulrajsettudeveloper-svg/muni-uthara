@@ -1,0 +1,59 @@
+.countdown-section {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, var(--secondary), #fff);
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--text);
+    margin-bottom: 2.5rem;
+    font-size: 2.2rem;
+  }
+
+  .countdown-grid {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .countdown-card {
+    background: #fff;
+    border-radius: 18px;
+    width: 130px;
+    height: 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 12px 30px rgba(212, 175, 55, 0.18);
+    border: 1px solid rgba(212, 175, 55, 0.25);
+
+    .value {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--primary);
+      line-height: 1;
+    }
+
+    .label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text);
+      opacity: 0.7;
+      margin-top: 0.5rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .countdown-card {
+      width: 78px;
+      height: 78px;
+
+      .value { font-size: 1.5rem; }
+      .label { font-size: 0.6rem; }
+    }
+  }
+}

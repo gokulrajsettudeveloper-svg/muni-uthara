@@ -1,0 +1,26 @@
+<section class="countdown-section" id="countdown">
+  <div class="container text-center">
+    <h2 class="section-title" data-aos="fade-up">
+      {{ isPast() ? "We're Married!" : 'Counting Down To Forever' }}
+    </h2>
+
+    <div class="countdown-grid" data-aos="zoom-in" data-aos-delay="150">
+      <div class="countdown-card">
+        <span class="value">{{ days() }}</span>
+        <span class="label">Days</span>
+      </div>
+      <div class="countdown-card">
+        <span class="value">{{ hours() }}</span>
+        <span class="label">Hours</span>
+      </div>
+      <div class="countdown-card">
+        <span class="value">{{ minutes() }}</span>
+        <span class="label">Minutes</span>
+      </div>
+      <div class="countdown-card">
+        <span class="value">{{ seconds() }}</span>
+        <span class="label">Seconds</span>
+      </div>
+    </div>
+  </div>
+</section>

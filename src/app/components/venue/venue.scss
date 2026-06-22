@@ -1,0 +1,61 @@
+.venue-section {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #fff, var(--secondary));
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--text);
+    font-size: 2.2rem;
+  }
+
+  .venue-info {
+    background: #fff;
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.06);
+
+    h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .address {
+      color: var(--text);
+      opacity: 0.8;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+
+      i { color: var(--accent); margin-right: 0.4rem; }
+    }
+
+    .btn-directions {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1.8rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: translateY(-3px);
+        color: #fff;
+      }
+    }
+  }
+
+  .map-wrap {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+
+    iframe {
+      display: block;
+    }
+  }
+}

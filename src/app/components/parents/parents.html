@@ -1,0 +1,22 @@
+<section class="parents-section" id="parents">
+  <div class="container">
+    <h2 class="section-title text-center" data-aos="fade-up">With the Blessings of Our Parents</h2>
+    <p class="section-subtitle text-center" data-aos="fade-up" data-aos-delay="100">
+      The two families who raised us with love
+    </p>
+
+    <div class="row justify-content-center g-4 mt-4">
+      @for (parent of parents; track parent.side; let i = $index) {
+        <div class="col-md-5" data-aos="fade-up" [attr.data-aos-delay]="150 + i * 100">
+          <div class="parents-card">
+            <span class="parents-side">{{ parent.side }}</span>
+            <h3>{{ parent.father }}</h3>
+            <span class="amp">&amp;</span>
+            <h3>{{ parent.mother }}</h3>
+            <p class="blessing">{{ parent.blessing }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

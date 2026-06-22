@@ -1,0 +1,36 @@
+<section class="wishes-section" id="wishes">
+  <div class="container">
+    <h2 class="section-title text-center" data-aos="fade-up">Kind Words</h2>
+
+    <div class="row g-4 mt-3">
+      <div class="col-lg-5" data-aos="fade-right">
+        <div class="wish-form">
+          <input
+            type="text"
+            placeholder="Your Name"
+            [(ngModel)]="name"
+            name="wishName">
+          <textarea
+            rows="4"
+            placeholder="Your Wishes..."
+            [(ngModel)]="message"
+            name="wishMessage"></textarea>
+          <button class="btn-submit" (click)="submit()" [disabled]="!canSubmit">
+            Submit Wish
+          </button>
+        </div>
+      </div>
+
+      <div class="col-lg-7" data-aos="fade-left">
+        <div class="wish-list">
+          @for (wish of wishes(); track wish.date + wish.name) {
+            <div class="wish-card">
+              <p class="wish-quote">"{{ wish.message }}"</p>
+              <p class="wish-meta">{{ wish.name }} &bull; {{ wish.date }}</p>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

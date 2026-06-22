@@ -1,0 +1,16 @@
+<section class="tribute-section" id="tribute">
+  <div class="container">
+    <h2 class="section-title text-center d-block" data-aos="fade-up">A Gift From Your Friend</h2>
+    <p class="section-subtitle text-center" data-aos="fade-up" data-aos-delay="100">
+      With love, {{ friendName }}
+    </p>
+
+    <div class="tribute-card" data-aos="zoom-in" data-aos-delay="150">
+      <div class="photo-wrap">
+        <img [src]="photo" [alt]="'Me and ' + friendName" loading="lazy">
+      </div>
+      <p class="tribute-message">{{ message }}</p>
+      <span class="tribute-sign">{{ friendName }}</span>
+    </div>
+  </div>
+</section>

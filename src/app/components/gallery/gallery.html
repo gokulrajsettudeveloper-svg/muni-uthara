@@ -1,0 +1,36 @@
+<section class="gallery-section" id="gallery">
+  <div class="container">
+    <h2 class="section-title text-center" data-aos="fade-up">Our Gallery</h2>
+
+    <div class="filter-chips text-center" data-aos="fade-up" data-aos-delay="100">
+      @for (cat of categories; track cat) {
+        <button
+          class="chip"
+          [class.active]="activeCategory() === cat"
+          (click)="setCategory(cat)">
+          {{ cat }}
+        </button>
+      }
+    </div>
+
+    <div class="gallery-grid mt-4">
+      @for (img of filtered; track img.url; let i = $index) {
+        <div class="gallery-item" data-aos="zoom-in" [attr.data-aos-delay]="(i % 6) * 80" (click)="open(img)">
+          <img [src]="img.url" [alt]="img.caption" loading="lazy">
+          <div class="overlay">
+            <i class="bi bi-zoom-in"></i>
+            <span>{{ img.caption }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  @if (lightboxImage()) {
+    <div class="lightbox" (click)="close()">
+      <button class="close-btn" (click)="close()"><i class="bi bi-x-lg"></i></button>
+      <img [src]="lightboxImage()!.url" [alt]="lightboxImage()!.caption" (click)="$event.stopPropagation()">
+      <p class="caption">{{ lightboxImage()!.caption }}</p>
+    </div>
+  }
+</section>

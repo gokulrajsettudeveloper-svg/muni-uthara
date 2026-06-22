@@ -1,0 +1,100 @@
+{
+  "site": {
+    "title": "Muniprakash & Uthara | Wedding Invitation",
+    "description": "Join us as we celebrate our wedding",
+    "createdBy": "Gokulraj"
+  },
+  "couple": {
+    "bride": {
+      "name": "Uthara",
+      "occupation": " ",
+      "description": "Daughter of Mr. Ramesh & Mrs. Nirmala.",
+      "photo": "assets/images/bride.jpeg"
+    },
+    "groom": {
+      "name": "Muniprakash",
+      "occupation": "Physician Assistant",
+      "description": "Son of Mr. Muniyan & Mrs. Kavitha.",
+      "photo": "assets/images/groom.jpeg"
+    },
+    "hashtag": "#Muniprakash&Uthara2026",
+    "heroImage": "assets/images/hero.jpg",
+    "weddingDate": "2026-08-21T05:00:00",
+    "families": {
+      "brideFamily": "Mr. Ramesh & Mrs. Nirmala",
+      "groomFamily": "Mr. Muniyan & Mrs. Kavitha"
+    }
+  },
+  "story": [
+    { "title": "First Meeting", "date": "12 May 2019", "icon": "bi-cup-hot-fill" },
+    { "title": "Started Dating", "date": "20 Aug 2020", "icon": "bi-heart-fill" },
+    { "title": "Engaged", "date": "14 Feb 2024", "icon": "bi-gem" },
+    { "title": "Forever Together", "date": "20 Jun 2026", "icon": "bi-infinity" }
+  ],
+  "parents": [
+    {
+      "side": "Bride's Parents",
+      "father": "Mr. Ramesh",
+      "mother": "Mrs. Nirmala",
+      "blessing": "With love and blessings, we joyfully present our daughter Uthara."
+    },
+    {
+      "side": "Groom's Parents",
+      "father": "Mr. Muniyan",
+      "mother": "Mrs. Kavitha",
+      "blessing": "With pride and happiness, we joyfully present our son Muniprakash."
+    }
+  ],
+  "events": [
+    {
+      "title": "Engagement",
+      "date": "20 Aug 2026",
+      "time": "06:00 PM",
+      "description": "An intimate ceremony with close family to celebrate the promise of forever.",
+      "icon": "bi-gem"
+    },
+    {
+      "title": "Wedding Ceremony",
+      "date": "21 Aug 2026",
+      "time": "05:00 AM",
+      "description": "The main ceremony uniting two families with timeless traditions.",
+      "icon": "bi-heart-fill"
+    },
+    {
+      "title": "Reception",
+      "date": "25 Aug 2026",
+      "time": "05:00 PM - 10:00 PM",
+      "description": "An evening of celebration, music and joy with all our loved ones.",
+      "icon": "bi-stars"
+    }
+  ],
+  "venue": {
+    "name": "Koothapadayachi Palaniammal (Valapadiyar) Thirumana Mandapam",
+    "address": "Salem, Tamil Nadu, India",
+    "mapEmbedUrl": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d244.2197507330315!2d78.39784878463841!3d11.657796600000012!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bab8e1c8ed30313%3A0x31e88a219df48119!2sKoothapadayachi%20Palaniammal%20(Valapadiyar)%20Thirumana%20Mandapam!5e0!3m2!1sen!2sin!4v1782122094958!5m2!1sen!2sin",
+    "mapDirectionsUrl": "https://www.google.com/maps/dir/?api=1&destination=11.6577966%2C78.3978487"
+  },
+  "gallery": [
+    { "category": "Engagement", "url": "assets/images/gallery1.jpg", "caption": "The Proposal" },
+    { "category": "Couple", "url": "assets/images/gallery2.jpg", "caption": "Together" },
+    { "category": "Family", "url": "assets/images/gallery3.jpg", "caption": "Our Families" },
+    { "category": "Memories", "url": "assets/images/gallery4.jpg", "caption": "Sweet Moments" },
+    { "category": "Couple", "url": "assets/images/gallery5.jpg", "caption": "Forever Begins" },
+    { "category": "Engagement", "url": "assets/images/gallery6.jpg", "caption": "Ring Day" }
+  ],
+  "music": {
+    "title": "Traditional Wedding Instrumental",
+    "url": "assets/audio/wedding-theme.mp3"
+  },
+  "social": {
+    "instagram": "https://instagram.com",
+    "facebook": "https://facebook.com",
+    "whatsapp": "https://wa.me/?text=",
+    "telegram": "https://t.me/share/url?url="
+  },
+  "tribute": {
+    "friendName": "Gokulraj",
+    "photo": "assets/images/tribute.jpg",
+    "message": "From classroom benches to this beautiful day, thank you for letting me be a part of your journey. Watching you both begin your forever is one of my proudest moments. This little website is my gift to you. Wishing you a lifetime of love, laughter, and togetherness."
+  }
+}

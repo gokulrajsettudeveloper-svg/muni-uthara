@@ -1,0 +1,15 @@
+<section class="story-section" id="story">
+  <div class="container">
+    <h2 class="section-title text-center d-block" data-aos="fade-up">Our Story</h2>
+
+    <div class="story-timeline" data-aos="fade-up" data-aos-delay="100">
+      @for (item of milestones; track item.title; let i = $index) {
+        <div class="story-step">
+          <div class="story-icon"><i class="bi {{ item.icon }}"></i></div>
+          <h3 class="story-title">{{ item.title }}</h3>
+          <span class="story-date">{{ item.date }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>

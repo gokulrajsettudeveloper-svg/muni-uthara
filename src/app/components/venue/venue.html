@@ -1,0 +1,29 @@
+<section class="venue-section" id="venue">
+  <div class="container">
+    <h2 class="section-title text-center" data-aos="fade-up">Wedding Venue</h2>
+
+    <div class="row g-4 align-items-center mt-3">
+      <div class="col-lg-5" data-aos="fade-right">
+        <div class="venue-info">
+          <h3>{{ venue.name }}</h3>
+          <p class="address"><i class="bi bi-geo-alt-fill"></i> {{ venue.address }}</p>
+          <a [href]="venue.mapDirectionsUrl" target="_blank" rel="noopener" class="btn btn-directions">
+            <i class="bi bi-signpost-2-fill"></i> Get Directions
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-7" data-aos="fade-left">
+        <div class="map-wrap">
+          <iframe
+            [src]="safeMapUrl"
+            width="100%"
+            height="380"
+            style="border:0;"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

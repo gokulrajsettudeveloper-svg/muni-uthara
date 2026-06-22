@@ -1,0 +1,30 @@
+<section class="share-section" id="share">
+  <div class="container text-center">
+    <h2 class="section-title" data-aos="fade-up">Share Our Joy</h2>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+      Spread the love &mdash; invite your friends and family
+    </p>
+
+    <div class="share-buttons" data-aos="zoom-in" data-aos-delay="150">
+      <a [href]="whatsappLink" target="_blank" rel="noopener" class="share-btn whatsapp">
+        <i class="bi bi-whatsapp"></i>
+      </a>
+      <a [href]="facebookLink" target="_blank" rel="noopener" class="share-btn facebook">
+        <i class="bi bi-facebook"></i>
+      </a>
+      <a [href]="instagramLink" target="_blank" rel="noopener" class="share-btn instagram">
+        <i class="bi bi-instagram"></i>
+      </a>
+      <a [href]="telegramLink" target="_blank" rel="noopener" class="share-btn telegram">
+        <i class="bi bi-telegram"></i>
+      </a>
+      <button class="share-btn copy" (click)="copyLink()">
+        <i class="bi" [class.bi-link-45deg]="!copied()" [class.bi-check-lg]="copied()"></i>
+      </button>
+    </div>
+
+    @if (copied()) {
+      <p class="copied-msg" data-aos="fade-in">Link copied!</p>
+    }
+  </div>
+</section>

@@ -1,0 +1,32 @@
+<section class="rsvp-section" id="rsvp">
+  <div class="container text-center">
+    <h2 class="section-title" data-aos="fade-up">Will You Attend?</h2>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+      Please let us know your response
+    </p>
+
+    <div class="rsvp-options" data-aos="zoom-in" data-aos-delay="150">
+      <button class="rsvp-card yes" [class.active]="choice() === 'yes'" (click)="select('yes')">
+        <i class="bi bi-check-circle-fill"></i>
+        <span>Yes</span>
+        <small>Can't Wait!</small>
+      </button>
+
+      <button class="rsvp-card maybe" [class.active]="choice() === 'maybe'" (click)="select('maybe')">
+        <i class="bi bi-question-circle-fill"></i>
+        <span>Maybe</span>
+        <small>Not Sure</small>
+      </button>
+
+      <button class="rsvp-card no" [class.active]="choice() === 'no'" (click)="select('no')">
+        <i class="bi bi-x-circle-fill"></i>
+        <span>No</span>
+        <small>Can't Make It</small>
+      </button>
+    </div>
+
+    @if (submitted()) {
+      <p class="thank-you" data-aos="fade-up">Thank you for your response!</p>
+    }
+  </div>
+</section>

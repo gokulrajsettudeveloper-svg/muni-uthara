@@ -1,0 +1,25 @@
+<section class="qr-section" id="qr-code">
+  <div class="container text-center">
+    <h2 class="section-title" data-aos="fade-up">Scan &amp; Share</h2>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+      Scan this code to open our invitation instantly
+    </p>
+
+    <div class="qr-card" data-aos="zoom-in" data-aos-delay="150">
+      @if (qrDataUrl()) {
+        <img [src]="qrDataUrl()" alt="Wedding invitation QR code">
+      } @else {
+        <div class="qr-placeholder"></div>
+      }
+    </div>
+
+    <div class="qr-actions" data-aos="fade-up" data-aos-delay="200">
+      <button class="btn btn-qr" (click)="download()">
+        <i class="bi bi-download"></i> Download
+      </button>
+      <button class="btn btn-qr outline" (click)="print()">
+        <i class="bi bi-printer-fill"></i> Print
+      </button>
+    </div>
+  </div>
+</section>

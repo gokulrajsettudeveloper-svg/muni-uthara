@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+
+@if (data()) {
+  <app-hero [couple]="data()!.couple"></app-hero>
+  <app-couple [couple]="data()!.couple"></app-couple>
+  <app-story [milestones]="data()!.story"></app-story>
+  <app-parents [parents]="data()!.parents"></app-parents>
+  <app-invitation-card [couple]="data()!.couple" [venue]="data()!.venue"></app-invitation-card>
+  <app-countdown [targetDate]="data()!.couple.weddingDate"></app-countdown>
+  <app-events [events]="data()!.events"></app-events>
+  <app-rsvp></app-rsvp>
+  <app-venue [venue]="data()!.venue"></app-venue>
+  <app-gallery [images]="data()!.gallery"></app-gallery>
+  <app-guest-wishes></app-guest-wishes>
+  <app-friendship-tribute [friendName]="data()!.tribute.friendName" [photo]="data()!.tribute.photo" [message]="data()!.tribute.message"></app-friendship-tribute>
+  <app-share></app-share>
+  <app-qr-code></app-qr-code>
+  <app-footer [createdBy]="data()!.site.createdBy"></app-footer>
+  <app-music-player [trackUrl]="data()!.music.url" [trackTitle]="data()!.music.title"></app-music-player>
+} @else {
+  <div class="loading-screen">
+    <div class="spinner"></div>
+    <p>Loading our story...</p>
+  </div>
+}

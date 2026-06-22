@@ -1,0 +1,66 @@
+.site-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+  background: rgba(61, 12, 31, 0.55);
+  backdrop-filter: blur(8px);
+
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem 1.5rem;
+  }
+
+  .brand {
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+  }
+
+  .nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 1.8rem;
+
+    a {
+      color: #fff;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      opacity: 0.9;
+      transition: opacity 0.25s ease, color 0.25s ease;
+
+      &:hover { opacity: 1; color: var(--secondary); }
+    }
+  }
+
+  .burger {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.4rem;
+  }
+
+  .nav-links-mobile {
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem 1.5rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    background: rgba(61, 12, 31, 0.92);
+
+    a {
+      color: #fff;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+  }
+}
