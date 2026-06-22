@@ -5,8 +5,8 @@ type RsvpChoice = 'yes' | 'maybe' | 'no' | null;
 @Component({
   selector: 'app-rsvp',
   standalone: true,
-  templateUrl: './rsvp.html',
-  styleUrl: './rsvp.scss'
+  templateUrl: './Rsvp.html',
+  styleUrl: './Rsvp.scss'
 })
 export class Rsvp {
   readonly choice = signal<RsvpChoice>(null);
