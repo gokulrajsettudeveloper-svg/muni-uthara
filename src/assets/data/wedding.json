@@ -18,7 +18,7 @@
       "photo": "assets/images/groom.jpeg"
     },
     "hashtag": "#Muniprakash&Uthara2026",
-    "heroImage": "assets/images/hero.jpg",
+    "heroImage": "assets/images/hero.svg",
     "weddingDate": "2026-08-21T05:00:00",
     "families": {
       "brideFamily": "Mr. Ramesh & Mrs. Nirmala",
@@ -75,12 +75,12 @@
     "mapDirectionsUrl": "https://www.google.com/maps/dir/?api=1&destination=11.6577966%2C78.3978487"
   },
   "gallery": [
-    { "category": "Engagement", "url": "assets/images/gallery1.jpg", "caption": "The Proposal" },
-    { "category": "Couple", "url": "assets/images/gallery2.jpg", "caption": "Together" },
-    { "category": "Family", "url": "assets/images/gallery3.jpg", "caption": "Our Families" },
-    { "category": "Memories", "url": "assets/images/gallery4.jpg", "caption": "Sweet Moments" },
-    { "category": "Couple", "url": "assets/images/gallery5.jpg", "caption": "Forever Begins" },
-    { "category": "Engagement", "url": "assets/images/gallery6.jpg", "caption": "Ring Day" }
+    { "category": "Engagement", "url": "assets/images/gallery1.svg", "caption": "The Proposal" },
+    { "category": "Couple", "url": "assets/images/gallery2.svg", "caption": "Together" },
+    { "category": "Family", "url": "assets/images/gallery3.svg", "caption": "Our Families" },
+    { "category": "Memories", "url": "assets/images/gallery4.svg", "caption": "Sweet Moments" },
+    { "category": "Couple", "url": "assets/images/gallery5.svg", "caption": "Forever Begins" },
+    { "category": "Engagement", "url": "assets/images/gallery6.svg", "caption": "Ring Day" }
   ],
   "music": {
     "title": "Traditional Wedding Instrumental",
@@ -94,7 +94,7 @@
   },
   "tribute": {
     "friendName": "Gokulraj",
-    "photo": "assets/images/tribute.jpg",
+    "photo": "assets/images/tribute.svg",
     "message": "From classroom benches to this beautiful day, thank you for letting me be a part of your journey. Watching you both begin your forever is one of my proudest moments. This little website is my gift to you. Wishing you a lifetime of love, laughter, and togetherness."
   }
 }

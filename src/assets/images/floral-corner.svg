@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 360" fill="none">
+  <defs>
+    <radialGradient id="rose" cx="0.4" cy="0.35" r="0.75">
+      <stop offset="0" stop-color="#f6c9d3"/>
+      <stop offset="0.55" stop-color="#e08aa0"/>
+      <stop offset="1" stop-color="#cf5d76"/>
+    </radialGradient>
+    <radialGradient id="roseLight" cx="0.4" cy="0.35" r="0.8">
+      <stop offset="0" stop-color="#fde3e9"/>
+      <stop offset="0.6" stop-color="#f3b9c7"/>
+      <stop offset="1" stop-color="#e295a8"/>
+    </radialGradient>
+    <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#b6c9a0"/>
+      <stop offset="1" stop-color="#7e9a6b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- leaves / sprigs trailing out from the corner -->
+  <g opacity="0.95">
+    <path d="M40 320 C70 250 120 210 200 190" stroke="#8aa472" stroke-width="3" stroke-linecap="round"/>
+    <path d="M44 300 C90 280 120 250 132 210" stroke="#8aa472" stroke-width="2.5" stroke-linecap="round"/>
+    <g fill="url(#leaf)">
+      <path d="M120 250 C150 232 178 236 196 224 C182 250 150 262 120 250 Z"/>
+      <path d="M150 296 C176 280 206 286 224 274 C208 302 176 312 150 296 Z"/>
+      <path d="M70 286 C92 264 122 262 142 248 C128 280 96 296 70 286 Z"/>
+      <path d="M196 196 C220 182 248 188 266 178 C250 204 220 212 196 196 Z"/>
+    </g>
+  </g>
+
+  <!-- rose buds -->
+  <g>
+    <g transform="translate(70,300)">
+      <circle r="46" fill="url(#rose)"/>
+      <path d="M-26 6 C-14 -18 14 -22 28 -6 C16 2 2 6 -2 18 C-12 16 -22 14 -26 6 Z" fill="#fff" opacity="0.18"/>
+      <path d="M-18 -8 C-6 -2 8 -2 18 -10 M-22 8 C-8 16 12 16 24 6 M-10 -20 C-2 -10 8 -8 16 -16" stroke="#b84b62" stroke-width="2.4" fill="none" stroke-linecap="round" opacity="0.7"/>
+    </g>
+
+    <g transform="translate(168,238)">
+      <circle r="38" fill="url(#roseLight)"/>
+      <path d="M-22 4 C-12 -14 12 -16 22 -4 C12 2 2 4 -2 14 C-10 12 -18 10 -22 4 Z" fill="#fff" opacity="0.22"/>
+      <path d="M-16 -6 C-6 0 8 0 16 -8 M-18 8 C-6 14 10 14 20 4" stroke="#c76f84" stroke-width="2.2" fill="none" stroke-linecap="round" opacity="0.7"/>
+    </g>
+
+    <g transform="translate(232,182)">
+      <circle r="28" fill="url(#rose)"/>
+      <path d="M-14 -4 C-6 2 6 2 14 -6 M-15 6 C-5 11 8 11 15 3" stroke="#b84b62" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.7"/>
+    </g>
+
+    <g transform="translate(36,250)">
+      <circle r="22" fill="url(#roseLight)"/>
+      <path d="M-11 -3 C-4 1 5 1 11 -5 M-12 5 C-4 9 7 9 12 2" stroke="#c76f84" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.7"/>
+    </g>
+  </g>
+
+  <!-- small filler buds & berries -->
+  <g fill="#e9a6b6">
+    <circle cx="206" cy="232" r="7"/>
+    <circle cx="118" cy="206" r="6"/>
+    <circle cx="262" cy="206" r="6"/>
+  </g>
+</svg>

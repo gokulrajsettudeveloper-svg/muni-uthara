@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7d2a40"/>
+      <stop offset="0.45" stop-color="#b3506a"/>
+      <stop offset="1" stop-color="#e8a7b5"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.42" r="0.65">
+      <stop offset="0" stop-color="#ffd9e0" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#ffd9e0" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="rose" cx="0.4" cy="0.35" r="0.8">
+      <stop offset="0" stop-color="#f8cfd8"/>
+      <stop offset="0.6" stop-color="#e294a6"/>
+      <stop offset="1" stop-color="#c85c75"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <ellipse cx="800" cy="420" rx="760" ry="520" fill="url(#glow)"/>
+
+  <!-- bokeh -->
+  <g fill="#ffe1e8">
+    <circle cx="180" cy="160" r="30" opacity="0.18"/>
+    <circle cx="1380" cy="120" r="42" opacity="0.16"/>
+    <circle cx="1500" cy="520" r="26" opacity="0.2"/>
+    <circle cx="120" cy="640" r="36" opacity="0.14"/>
+    <circle cx="1280" cy="820" r="22" opacity="0.18"/>
+    <circle cx="520" cy="120" r="18" opacity="0.2"/>
+  </g>
+
+  <!-- soft floral clusters bottom corners -->
+  <g opacity="0.85">
+    <g transform="translate(60,860) scale(1.1)">
+      <circle r="70" fill="url(#rose)"/>
+      <circle cx="120" cy="40" r="48" fill="#f3b6c4" opacity="0.9"/>
+      <circle cx="-10" cy="-90" r="40" fill="#eaa3b3" opacity="0.85"/>
+      <path d="M40 -10 C150 -60 260 -70 360 -120" stroke="#9bb083" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.7"/>
+    </g>
+    <g transform="translate(1540,900) scale(-1.2,1.2)">
+      <circle r="64" fill="url(#rose)"/>
+      <circle cx="110" cy="30" r="44" fill="#f3b6c4" opacity="0.9"/>
+      <circle cx="-6" cy="-86" r="36" fill="#eaa3b3" opacity="0.85"/>
+      <path d="M36 -8 C150 -60 260 -70 360 -120" stroke="#9bb083" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.7"/>
+    </g>
+  </g>
+
+  <!-- faint monogram -->
+  <text x="800" y="540" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="240" fill="#ffffff" opacity="0.06" font-style="italic">M &amp; U</text>
+</svg>

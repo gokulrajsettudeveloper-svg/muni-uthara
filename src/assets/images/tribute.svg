@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <radialGradient id="tg" cx="0.5" cy="0.4" r="0.7">
+      <stop offset="0" stop-color="#fbe0e6"/>
+      <stop offset="0.55" stop-color="#eda6b7"/>
+      <stop offset="1" stop-color="#c75f7c"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#tg)"/>
+  <g fill="#ffffff" opacity="0.12">
+    <circle cx="90" cy="110" r="46"/><circle cx="520" cy="90" r="30"/><circle cx="530" cy="500" r="40"/>
+  </g>
+  <!-- two overlapping hearts = friendship -->
+  <g opacity="0.4" fill="#ffffff">
+    <path d="M250 350 C250 350 168 296 168 248 C168 222 188 204 214 204 C232 204 246 216 250 230 C254 216 268 204 286 204 C312 204 332 222 332 248 C332 296 250 350 250 350 Z"/>
+  </g>
+  <g opacity="0.55" fill="#ffffff">
+    <path d="M360 318 C360 318 296 276 296 238 C296 218 312 204 332 204 C346 204 356 213 360 224 C364 213 374 204 388 204 C408 204 424 218 424 238 C424 276 360 318 360 318 Z"/>
+  </g>
+  <text x="300" y="470" text-anchor="middle" font-family="Georgia,'Times New Roman',serif" font-style="italic" font-size="40" fill="#ffffff" opacity="0.95">With Love</text>
+</svg>
