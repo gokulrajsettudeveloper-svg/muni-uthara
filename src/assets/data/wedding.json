@@ -28,8 +28,8 @@
   "story": [
     { "title": "First Meeting", "date": "12 May 2019", "icon": "bi-cup-hot-fill" },
     { "title": "Started Dating", "date": "20 Aug 2020", "icon": "bi-heart-fill" },
-    { "title": "Engaged", "date": "14 Feb 2024", "icon": "bi-gem" },
-    { "title": "Forever Together", "date": "20 Jun 2026", "icon": "bi-infinity" }
+    { "title": "Engaged", "date": "20 Aug 2026", "icon": "bi-gem" },
+    { "title": "Forever Together", "date": "21 Aug 2026", "icon": "bi-infinity" }
   ],
   "parents": [
     {
@@ -83,8 +83,12 @@
     { "category": "Engagement", "url": "assets/images/gallery6.svg", "caption": "Ring Day" }
   ],
   "music": {
-    "title": "Traditional Wedding Instrumental",
-    "url": "assets/audio/wedding-theme.mp3"
+    "tracks": [
+      { "title": "Song One", "url": "assets/audio/song1.mp3" },
+      { "title": "Song Two", "url": "assets/audio/song2.mp3" },
+      { "title": "Song Three", "url": "assets/audio/song3.mp3" },
+      { "title": "Song Four", "url": "assets/audio/song4.mp3" }
+    ]
   },
   "social": {
     "instagram": "https://instagram.com",

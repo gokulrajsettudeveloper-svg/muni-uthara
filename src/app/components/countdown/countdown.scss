@@ -17,7 +17,9 @@
   }
 
   .countdown-card {
-    background: #fff;
+    background: var(--card-bg);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     border-radius: 18px;
     width: 130px;
     height: 130px;

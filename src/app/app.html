@@ -16,7 +16,7 @@
   <app-share></app-share>
   <app-qr-code></app-qr-code>
   <app-footer [createdBy]="data()!.site.createdBy"></app-footer>
-  <app-music-player [trackUrl]="data()!.music.url" [trackTitle]="data()!.music.title"></app-music-player>
+  <app-music-player [tracks]="data()!.music.tracks"></app-music-player>
 } @else {
   <div class="loading-screen">
     <div class="spinner"></div>

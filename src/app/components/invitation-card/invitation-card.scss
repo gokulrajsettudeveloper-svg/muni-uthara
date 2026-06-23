@@ -15,7 +15,9 @@
   }
 
   .invitation-card {
-    background: #FFFDF9;
+    background: var(--card-bg);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     width: 420px;
     max-width: 92vw;
     padding: 3rem 2rem;

@@ -9,7 +9,9 @@
   }
 
   .event-card {
-    background: #fff;
+    background: var(--card-bg);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     border-radius: 18px;
     padding: 2rem 1.4rem;
     text-align: center;

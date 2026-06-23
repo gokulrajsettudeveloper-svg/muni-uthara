@@ -1,7 +1,6 @@
 <div class="music-player" [class.expanded]="isExpanded()">
   <audio
     #audioRef
-    [src]="trackUrl"
     (timeupdate)="onTimeUpdate()"
     (ended)="onEnded()"
     loop="false"
@@ -14,7 +13,7 @@
 
   @if (isExpanded()) {
     <div class="player-panel" data-aos="fade-up">
-      <p class="track-title">{{ trackTitle }}</p>
+      <p class="track-title">{{ trackTitle() }}</p>
 
       <div class="controls">
         <button class="play-btn" (click)="togglePlay()">

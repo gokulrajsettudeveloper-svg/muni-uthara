@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 
 @Component({
   selector: 'app-qr-code',
@@ -7,22 +7,35 @@ import { Component, ElementRef, OnInit, ViewChild, signal } from '@angular/core'
   styleUrl: './qr-code.scss'
 })
 export class QrCode implements OnInit {
-  @ViewChild('canvasRef') canvasRef!: ElementRef<HTMLCanvasElement>;
-
   readonly pageUrl = typeof window !== 'undefined' ? window.location.href : '';
   readonly qrDataUrl = signal<string>('');
 
   async ngOnInit(): Promise<void> {
-    const QRCode = await import('qrcode');
-    const dataUrl = await QRCode.toDataURL(this.pageUrl || 'https://example.com', {
-      width: 320,
-      margin: 2,
-      color: {
-        dark: '#2C2C2C',
-        light: '#FFFDF9'
-      }
-    });
-    this.qrDataUrl.set(dataUrl);
+    const target = (typeof window !== 'undefined' && window.location.href) || this.pageUrl || 'https://example.com';
+
+    try {
+      // qrcode is a CommonJS module. In the optimized production bundle the
+      // ESM interop nests the API under `.default`, while the dev build exposes
+      // it directly — so resolve whichever object actually has `toDataURL`.
+      const mod: any = await import('qrcode');
+      const QRCode = typeof mod?.toDataURL === 'function' ? mod : (mod?.default ?? mod);
+
+      const dataUrl = await QRCode.toDataURL(target, {
+        width: 320,
+        margin: 2,
+        color: {
+          dark: '#2C2C2C',
+          light: '#FFFDF9'
+        }
+      });
+      this.qrDataUrl.set(dataUrl);
+    } catch (err) {
+      console.error('QR generation failed', err);
+      // Fallback so the code is never blank: a lightweight hosted generator.
+      this.qrDataUrl.set(
+        `https://api.qrserver.com/v1/create-qr-code/?size=320x320&margin=8&data=${encodeURIComponent(target)}`
+      );
+    }
   }
 
   download(): void {

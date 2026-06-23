@@ -1,6 +1,7 @@
 .venue-section {
   padding: 5rem 0;
-  background: linear-gradient(135deg, #fff, var(--secondary));
+  // translucent tint so the floral backdrop still reads through the gradient
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.45), rgba(251, 228, 228, 0.5));
 
   .section-title {
     font-family: 'Playfair Display', serif;
@@ -9,7 +10,9 @@
   }
 
   .venue-info {
-    background: #fff;
+    background: var(--card-bg);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     border-radius: 20px;
     padding: 2.5rem;
     box-shadow: 0 10px 35px rgba(0,0,0,0.06);

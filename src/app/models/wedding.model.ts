@@ -60,8 +60,8 @@ export interface WeddingData {
   venue: Venue;
   gallery: GalleryImage[];
   music: {
-    title: string;
-    url: string;
+    // A playlist — a random track is chosen each time the site is opened.
+    tracks: { title: string; url: string }[];
   };
   social: {
     instagram: string;
