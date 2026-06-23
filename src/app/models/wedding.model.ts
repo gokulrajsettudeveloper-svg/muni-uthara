@@ -19,10 +19,13 @@ export interface Couple {
 
 export interface EventItem {
   title: string;
+  type?: string;       // optional event-type label (falls back to title)
   date: string;
   time: string;
   description: string;
   icon: string;
+  venue?: string;      // optional per-event venue (falls back to the global venue)
+  address?: string;    // optional per-event address (falls back to the global venue)
 }
 
 export interface Venue {

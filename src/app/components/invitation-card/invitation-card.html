@@ -2,17 +2,55 @@
   <div class="container text-center">
     <h2 class="section-title" data-aos="fade-up">Digital Invitation</h2>
 
+    @if (events.length > 1) {
+      <div class="event-tabs" data-aos="fade-up" data-aos-delay="100">
+        @for (ev of events; track $index) {
+          <button
+            type="button"
+            class="event-tab"
+            [class.active]="$index === selectedIndex()"
+            (click)="select($index)">
+            {{ name(ev) }}
+          </button>
+        }
+      </div>
+    }
+
     <div class="card-wrap" data-aos="zoom-in" data-aos-delay="150">
       <div class="invitation-card" #cardRef>
-        <div class="border-deco top"></div>
         <p class="eyebrow">Together with their families</p>
         <p class="family-line">{{ couple.families.groomFamily }} &amp; {{ couple.families.brideFamily }}</p>
-        <h3 class="invite-names">{{ couple.groom.name }}<br><span class="amp">&amp;</span><br>{{ couple.bride.name }}</h3>
-        <p class="invite-line">request the honour of your presence at their wedding</p>
-        <p class="invite-date">{{ couple.weddingDate | date: 'EEEE, MMMM d, y' }}</p>
-        <p class="invite-time">{{ couple.weddingDate | date: 'hh:mm a' }}</p>
-        <p class="invite-venue">{{ venue.name }}<br>{{ venue.address }}</p>
-        <div class="border-deco bottom"></div>
+
+        <h3 class="invite-names">
+          {{ couple.groom.name }}<span class="amp">&amp;</span>{{ couple.bride.name }}
+        </h3>
+
+        <div class="divider"><i class="bi bi-suit-heart-fill"></i></div>
+
+        @if (event(); as ev) {
+          <p class="invite-line">joyfully invite you to the</p>
+          <p class="event-name">{{ name(ev) }}</p>
+
+          <div class="event-meta">
+            <span class="meta-item"><i class="bi bi-calendar-heart"></i> {{ ev.date }}</span>
+            <span class="meta-dot">•</span>
+            <span class="meta-item"><i class="bi bi-clock"></i> {{ ev.time }}</span>
+          </div>
+
+          @if (ev.description) {
+            <p class="invite-desc">{{ ev.description }}</p>
+          }
+
+          <div class="divider small"><span></span></div>
+
+          <p class="invite-venue">
+            <i class="bi bi-geo-alt-fill"></i>
+            <span class="venue-text">
+              <strong>{{ venueName() }}</strong>
+              <br />{{ venueAddress() }}
+            </span>
+          </p>
+        }
       </div>
     </div>
 
