@@ -1,4 +1,6 @@
-<section class="hero" id="hero" [style.backgroundImage]="'linear-gradient(rgba(44,44,44,0.45), rgba(44,44,44,0.55)), url(' + couple.heroImage + ')'">
+<section class="hero" id="hero">
+  <img class="hero-photo" [src]="couple.heroImage"
+       alt="{{ couple.groom.name.split(' ')[0] }} & {{ couple.bride.name.split(' ')[0] }}" />
   <div class="hero-content text-center" data-aos="zoom-in" data-aos-duration="1200">
     <h1 class="hero-invited">You're Invited</h1>
     <p class="hero-subtitle">To Our Wedding</p>
