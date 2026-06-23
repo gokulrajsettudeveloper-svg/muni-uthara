@@ -1,6 +1,23 @@
 <app-navbar></app-navbar>
 
 @if (data()) {
+  @if (showIntro()) {
+    <div class="intro-overlay" [class.closing]="introClosing()" (click)="enterSite()">
+      <div class="intro-inner">
+        <span class="intro-monogram">M &amp; U</span>
+        <p class="intro-eyebrow">Together with their families</p>
+        <h1 class="intro-names">
+          {{ data()!.couple.groom.name.split(' ')[0] }}<br />&amp; {{ data()!.couple.bride.name.split(' ')[0] }}
+        </h1>
+        <p class="intro-date">{{ data()!.couple.weddingDate | date: 'dd . MM . yyyy' }}</p>
+        <button class="intro-enter" type="button" (click)="enterSite()">
+          <i class="bi bi-envelope-heart-fill"></i> Tap to Open Invitation
+        </button>
+        <p class="intro-music"><i class="bi bi-music-note-beamed"></i> with music</p>
+      </div>
+    </div>
+  }
+
   <app-hero [couple]="data()!.couple"></app-hero>
   <app-couple [couple]="data()!.couple"></app-couple>
   <app-story [milestones]="data()!.story"></app-story>

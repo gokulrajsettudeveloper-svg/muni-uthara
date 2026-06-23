@@ -22,3 +22,112 @@
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
+
+// Intro gate — a full-screen landing card. The visitor's tap to enter both
+// reveals the site and lets the background music start with sound.
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden; // never let the large script names cause a horizontal scroll
+  background:
+    linear-gradient(160deg, rgba(255, 249, 243, 0.94), rgba(251, 228, 228, 0.94)),
+    url('/assets/images/floral-bg.png') center / cover no-repeat;
+  animation: intro-fade-in 0.6s ease;
+  transition: opacity 0.6s ease;
+
+  &.closing {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .intro-inner {
+    width: 100%;
+    max-width: 460px;
+    padding: 0 0.5rem;
+    animation: intro-rise 0.9s ease both;
+  }
+
+  .intro-monogram {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem;
+    letter-spacing: 5px;
+    color: var(--primary);
+    margin-bottom: 1.4rem;
+  }
+
+  .intro-eyebrow {
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.7rem;
+    color: var(--accent);
+    margin-bottom: 0.7rem;
+  }
+
+  .intro-names {
+    font-family: var(--script);
+    font-weight: 400;
+    font-size: clamp(2.6rem, 11vw, 4.6rem);
+    line-height: 1.15;
+    color: var(--primary);
+    margin-bottom: 0.4rem;
+  }
+
+  .intro-date {
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 3px;
+    font-size: 0.95rem;
+    color: var(--accent);
+    margin-bottom: 2rem;
+  }
+
+  .intro-enter {
+    border: none;
+    background: var(--primary);
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+    padding: 0.9rem 2.2rem;
+    border-radius: 50px;
+    box-shadow: 0 12px 30px rgba(212, 175, 55, 0.45);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: intro-pulse 2.2s ease-in-out infinite;
+
+    i { margin-right: 0.5rem; }
+    &:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(212, 175, 55, 0.55); }
+  }
+
+  .intro-music {
+    margin-top: 1.1rem;
+    font-size: 0.78rem;
+    color: var(--accent);
+    opacity: 0.8;
+    i { margin-right: 0.3rem; }
+  }
+}
+
+@keyframes intro-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes intro-rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes intro-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}

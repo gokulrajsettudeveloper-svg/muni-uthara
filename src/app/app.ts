@@ -1,4 +1,5 @@
 import { Component, OnInit, signal } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import AOS from 'aos';
 import { WeddingDataService } from './services/wedding-data.service';
 import { WeddingData } from './models/wedding.model';
@@ -24,6 +25,7 @@ import { Footer } from './components/footer/footer';
   selector: 'app-root',
   standalone: true,
   imports: [
+    DatePipe,
     Navbar,
     Hero,
     CoupleSection,
@@ -48,7 +50,21 @@ import { Footer } from './components/footer/footer';
 export class App implements OnInit {
   readonly data = signal<WeddingData | null>(null);
 
+  /** Intro gate: the visitor's "Tap to Open Invitation" gesture lets the music
+   *  start with sound (browsers block un-muted autoplay before any gesture). */
+  readonly showIntro = signal(true);
+  readonly introClosing = signal(false);
+
   constructor(private weddingData: WeddingDataService) {}
+
+  /** Dismiss the intro. The tap itself is caught by the music player's
+   *  first-interaction listener, which unmutes and plays (respecting a saved
+   *  "off" choice), so no direct wiring is needed here. */
+  enterSite(): void {
+    if (this.introClosing()) return;
+    this.introClosing.set(true);
+    setTimeout(() => this.showIntro.set(false), 600);
+  }
 
   async ngOnInit(): Promise<void> {
     const result = await this.weddingData.load();
