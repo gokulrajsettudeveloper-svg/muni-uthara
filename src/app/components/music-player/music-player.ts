@@ -45,13 +45,25 @@ export class MusicPlayer implements OnInit, AfterViewInit {
       return;
     }
 
-    // Show the "Tap to Enable Music" prompt until the visitor turns sound on,
-    // and try autoplay MUTED (browsers allow this) so the track is already
-    // rolling. Sound is unmuted on the first interaction or prompt tap.
-    this.needsEnable.set(true);
-    audio.muted = true;
-    audio.play().catch(() => { /* even muted autoplay blocked — wait for gesture */ });
-    this.armFirstInteraction();
+    // First, OPTIMISTICALLY try real (un-muted) autoplay. Browsers grant this
+    // once the visitor has "media engagement" with the site (i.e. on return
+    // visits after they enabled it once) — so for them music just plays.
+    audio.muted = false;
+    audio.play()
+      .then(() => {
+        this.isOn.set(true);
+        this.needsEnable.set(false);
+        this.writePref('on');
+      })
+      .catch(() => {
+        // Blocked (typical first visit). Start MUTED so the track is already
+        // rolling, show the "Tap to Enable Music" prompt, and unmute on the
+        // first real interaction anywhere on the page.
+        audio.muted = true;
+        audio.play().catch(() => { /* even muted autoplay blocked — wait for gesture */ });
+        this.needsEnable.set(true);
+        this.armFirstInteraction();
+      });
   }
 
   /** Turn sound on: unmute, play, remember the choice, hide the prompt. */
@@ -87,14 +99,29 @@ export class MusicPlayer implements OnInit, AfterViewInit {
     if (this.interactionArmed) return;
     this.interactionArmed = true;
 
-    const events = ['pointerdown', 'touchstart', 'keydown', 'scroll'];
+    // Listen broadly. NOTE: a mouse-wheel `scroll` is NOT a user-activation
+    // gesture, so play() may still be blocked on it — that's why we only
+    // disarm once playback actually starts, leaving the next tap/click to work.
+    const events = ['pointerdown', 'touchstart', 'touchend', 'click', 'keydown', 'scroll'];
+    const cleanup = () => events.forEach(e => window.removeEventListener(e, start, true));
+
     const start = (ev: Event) => {
-      events.forEach(e => window.removeEventListener(e, start, true));
-      // honour a meanwhile-chosen "off"; let the player's own buttons self-handle
-      if (this.readPref() === 'off' || this.isOn()) return;
+      if (this.readPref() === 'off' || this.isOn()) { cleanup(); return; }
+      // Gestures on the player's own controls are handled by those buttons.
       const target = ev.target as HTMLElement | null;
       if (target?.closest?.('.music-player')) return;
-      this.enableSound();
+
+      const audio = this.audioRef.nativeElement;
+      audio.muted = false;
+      audio.volume = DEFAULT_VOLUME;
+      audio.play()
+        .then(() => {
+          this.isOn.set(true);
+          this.needsEnable.set(false);
+          this.writePref('on');
+          cleanup();
+        })
+        .catch(() => { /* gesture wasn't enough (e.g. wheel scroll) — stay armed */ });
     };
     events.forEach(e => window.addEventListener(e, start, { capture: true, passive: true }));
   }

@@ -16,3 +16,4 @@ export class Hero {
     document.getElementById('invitation')?.scrollIntoView({ behavior: 'smooth' });
   }
 }
+
