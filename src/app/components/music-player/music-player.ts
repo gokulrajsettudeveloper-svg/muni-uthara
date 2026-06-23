@@ -35,26 +35,37 @@ export class MusicPlayer implements OnInit, AfterViewInit {
     audio.volume = this.volume();
     this.loadCurrent();
 
-    // Try to autoplay the random track. Browsers block autoplay-with-sound
-    // until the user interacts, so if it's rejected we start on the first tap.
+    // Arm a first-interaction starter up front, then optimistically try to
+    // autoplay. Browsers block autoplay-with-sound until the visitor interacts,
+    // so on a fresh visit playback begins on the first tap/scroll/key anywhere.
+    this.armFirstInteractionAutoplay();
     audio.play()
-      .then(() => this.isPlaying.set(true))
-      .catch(() => this.armFirstInteractionAutoplay());
+      .then(() => {
+        this.autostarted = true;
+        this.isPlaying.set(true);
+      })
+      .catch(() => { /* blocked — the interaction starter will kick in */ });
   }
 
-  /** Start playback on the visitor's first interaction if autoplay was blocked. */
+  /** Start playback on the visitor's first interaction anywhere on the page. */
   private armFirstInteractionAutoplay(): void {
-    const start = () => {
+    const events = ['pointerdown', 'touchstart', 'keydown', 'scroll'];
+    const start = (ev: Event) => {
       if (this.autostarted) return;
       this.autostarted = true;
+      events.forEach(e => window.removeEventListener(e, start, true));
+
+      // If the gesture landed on the player's own controls, let those handle
+      // playback so we don't immediately toggle it back off.
+      const target = ev.target as HTMLElement | null;
+      if (target?.closest?.('.music-player')) return;
+
       this.audioRef.nativeElement.play()
         .then(() => this.isPlaying.set(true))
         .catch(() => {});
-      window.removeEventListener('pointerdown', start);
-      window.removeEventListener('keydown', start);
     };
-    window.addEventListener('pointerdown', start, { once: true });
-    window.addEventListener('keydown', start, { once: true });
+    // Capture phase + passive so we catch the earliest gesture cleanly.
+    events.forEach(e => window.addEventListener(e, start, { capture: true, passive: true }));
   }
 
   /** Choose a random track, avoiding an immediate repeat when possible. */
