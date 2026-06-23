@@ -19,9 +19,21 @@ html, body {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', sans-serif;
-  background: var(--bg) url('/assets/images/floral-bg.png') center / cover no-repeat fixed;
+  background: var(--bg);
   color: var(--text);
   scroll-behavior: smooth;
+}
+
+// Floral backdrop pinned to the viewport. We use a fixed layer instead of
+// `background-attachment: fixed` because that is not rendered on most mobile
+// browsers (iOS Safari / Android Chrome), which left the background blank.
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: var(--bg) url('/assets/images/floral-bg.png') center / cover no-repeat;
+  pointer-events: none;
 }
 
 h1, h2, h3, h4 {

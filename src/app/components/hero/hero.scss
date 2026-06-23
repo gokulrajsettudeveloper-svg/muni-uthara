@@ -114,32 +114,36 @@
   }
 }
 
-// On phones the photo fills the screen (full height shows the whole couple,
-// no head cropping) and the invitation card sits at the bottom over a soft fade.
+// On phones the wide banner is shown in FULL (uncropped) so both the bride and
+// groom are completely visible, with the invitation card stacked neatly below.
 @media (max-width: 768px) {
   .hero {
-    justify-content: center;
-    align-items: flex-end;
-    overflow: hidden;
-    padding: 0 0.9rem 2.2rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    min-height: auto;
+    overflow: visible;
+    padding: 5rem 1rem 2.5rem;
 
     .hero-photo {
-      object-position: 36% center;
+      position: relative;
+      inset: auto;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      border-radius: 18px;
+      box-shadow: 0 16px 40px rgba(61, 12, 31, 0.16);
     }
 
-    // bottom-up fade so the card blends into the photo and text stays readable
+    // no side veil on mobile; the card sits below the photo, not over it
     &::before {
-      background: linear-gradient(
-        to top,
-        rgba(255, 245, 247, 0.97) 6%,
-        rgba(255, 245, 247, 0.78) 24%,
-        rgba(255, 245, 247, 0) 52%
-      );
+      display: none;
     }
 
     .hero-content {
-      margin: 0 auto;
-      max-width: 94%;
+      margin: 1.25rem auto 0;
+      max-width: 100%;
+      width: 100%;
     }
 
     .scroll-cue {
