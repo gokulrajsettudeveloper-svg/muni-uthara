@@ -4,76 +4,81 @@
   right: 1.5rem;
   z-index: 1040;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.8rem;
+  align-items: center;
+  gap: 0.7rem;
 
-  .toggle-btn {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: var(--primary);
-    color: #fff;
+  // "🎵 Tap to Enable Music" — an elegant floating pill shown until the
+  // visitor turns the sound on.
+  .music-enable {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
     border: none;
-    font-size: 1.4rem;
-    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.45);
+    background: rgba(255, 250, 250, 0.92);
+    color: var(--primary);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.3px;
+    padding: 0.6rem 1.1rem;
+    border-radius: 50px;
+    box-shadow: 0 10px 28px rgba(61, 12, 31, 0.22);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    cursor: pointer;
+    white-space: nowrap;
+    animation: enable-pulse 2.2s ease-in-out infinite;
 
-    &.spinning i {
-      animation: spin-record 3s linear infinite;
-      display: inline-block;
-    }
+    i { font-size: 0.95rem; }
+
+    &:hover { background: #fff; }
   }
 
-  .player-panel {
-    background: #fff;
-    border-radius: 16px;
-    padding: 1.2rem 1.4rem;
-    width: 240px;
-    box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+  // Always-visible ON/OFF toggle.
+  .music-toggle {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+    background: rgba(61, 12, 31, 0.5);
+    color: #fff;
+    box-shadow: 0 8px 24px rgba(61, 12, 31, 0.35);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: background 0.3s ease, transform 0.2s ease;
 
-    .track-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.9rem;
-      color: var(--text);
-      margin-bottom: 0.8rem;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+    &:hover { transform: translateY(-2px); }
 
-    .controls {
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
-      margin-bottom: 0.8rem;
+    // playing: rose accent + spinning disc
+    &.on {
+      background: var(--primary);
+      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.45);
 
-      .play-btn {
-        width: 34px;
-        height: 34px;
-        border-radius: 50%;
-        background: var(--secondary);
-        color: var(--primary);
-        border: none;
-        flex-shrink: 0;
+      i {
+        display: inline-block;
+        animation: spin-record 3s linear infinite;
       }
     }
+  }
+}
 
-    input[type="range"] {
-      width: 100%;
-      accent-color: var(--primary);
-      height: 4px;
-    }
+@media (max-width: 575.98px) {
+  .music-player {
+    bottom: 1rem;
+    right: 1rem;
 
-    .volume-row {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-size: 0.85rem;
-      color: var(--accent);
-    }
+    .music-enable { font-size: 0.72rem; padding: 0.5rem 0.9rem; }
+    .music-toggle { width: 48px; height: 48px; font-size: 1.2rem; }
   }
 }
 
 @keyframes spin-record {
   to { transform: rotate(360deg); }
+}
+
+@keyframes enable-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 10px 28px rgba(61, 12, 31, 0.22); }
+  50% { transform: scale(1.04); box-shadow: 0 12px 34px rgba(214, 83, 109, 0.4); }
 }

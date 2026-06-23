@@ -13,6 +13,6 @@ export class Hero {
   @Input({ required: true }) couple!: Couple;
 
   scrollToInvite(): void {
-    document.getElementById('countdown')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('invitation')?.scrollIntoView({ behavior: 'smooth' });
   }
 }

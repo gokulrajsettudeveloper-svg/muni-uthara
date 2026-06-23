@@ -1,46 +1,18 @@
-<div class="music-player" [class.expanded]="isExpanded()">
-  <audio
-    #audioRef
-    (timeupdate)="onTimeUpdate()"
-    (ended)="onEnded()"
-    loop="false"
-    preload="metadata">
-  </audio>
+<div class="music-player">
+  <audio #audioRef (ended)="onEnded()" preload="auto"></audio>
 
-  <button class="toggle-btn" (click)="toggleExpand()" [class.spinning]="isPlaying()">
-    <i class="bi bi-vinyl-fill"></i>
-  </button>
-
-  @if (isExpanded()) {
-    <div class="player-panel" data-aos="fade-up">
-      <p class="track-title">{{ trackTitle() }}</p>
-
-      <div class="controls">
-        <button class="play-btn" (click)="togglePlay()">
-          <i class="bi" [class.bi-play-fill]="!isPlaying()" [class.bi-pause-fill]="isPlaying()"></i>
-        </button>
-
-        <input
-          type="range"
-          class="progress-bar"
-          min="0"
-          max="100"
-          [value]="progress()"
-          (input)="seek($event)">
-      </div>
-
-      <div class="volume-row">
-        <i class="bi bi-volume-down-fill"></i>
-        <input
-          type="range"
-          class="volume-bar"
-          min="0"
-          max="1"
-          step="0.05"
-          [value]="volume()"
-          (input)="setVolume($event)">
-        <i class="bi bi-volume-up-fill"></i>
-      </div>
-    </div>
+  @if (needsEnable()) {
+    <button class="music-enable" (click)="enableSound()" data-aos="fade-left">
+      <i class="bi bi-music-note-beamed"></i> Tap to Enable Music
+    </button>
   }
+
+  <button
+    class="music-toggle"
+    [class.on]="isOn()"
+    (click)="toggle()"
+    [title]="isOn() ? 'Music on — tap to mute' : 'Music off — tap to play'"
+    [attr.aria-label]="isOn() ? 'Turn music off' : 'Turn music on'">
+    <i class="bi" [class.bi-disc-fill]="isOn()" [class.bi-volume-mute-fill]="!isOn()"></i>
+  </button>
 </div>

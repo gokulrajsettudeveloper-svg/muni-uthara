@@ -25,6 +25,24 @@ html, body {
   scroll-behavior: smooth;
 }
 
+// Optional premium feel: the hero settles as one full screen, then the first
+// content section snaps in after a scroll. `proximity` (not `mandatory`) keeps
+// it gentle — it never traps the scroll or fights anchor links.
+html {
+  scroll-snap-type: y proximity;
+}
+
+// Anchored scrolls (nav links, the hero "Open Invitation" button) land just
+// below the fixed navbar instead of tucking under it.
+section[id] {
+  scroll-margin-top: 70px;
+}
+
+// First content section snaps in after the hero.
+.couple-section {
+  scroll-snap-align: start;
+}
+
 // Floral backdrop pinned to the viewport. We use a fixed layer instead of
 // `background-attachment: fixed` because that is not rendered on most mobile
 // browsers (iOS Safari / Android Chrome), which left the background blank.

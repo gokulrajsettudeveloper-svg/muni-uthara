@@ -5,6 +5,9 @@ interface Track {
   url: string;
 }
 
+const STORAGE_KEY = 'wedding-music';   // remembered preference: 'on' | 'off'
+const DEFAULT_VOLUME = 0.25;           // pleasant background level (25%)
+
 @Component({
   selector: 'app-music-player',
   standalone: true,
@@ -17,14 +20,14 @@ export class MusicPlayer implements OnInit, AfterViewInit {
 
   @ViewChild('audioRef') audioRef!: ElementRef<HTMLAudioElement>;
 
+  /** Music is on and audible. */
+  readonly isOn = signal(false);
+  /** Autoplay-with-sound was blocked — show the "Tap to Enable Music" prompt. */
+  readonly needsEnable = signal(false);
   readonly current = signal<Track | null>(null);
-  readonly isPlaying = signal(false);
-  readonly isExpanded = signal(false);
-  readonly progress = signal(0);
-  readonly volume = signal(0.7);
 
   private currentIndex = -1;
-  private autostarted = false;
+  private interactionArmed = false;
 
   ngOnInit(): void {
     this.pickRandomTrack();
@@ -32,39 +35,67 @@ export class MusicPlayer implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     const audio = this.audioRef.nativeElement;
-    audio.volume = this.volume();
+    audio.volume = DEFAULT_VOLUME;
     this.loadCurrent();
 
-    // Arm a first-interaction starter up front, then optimistically try to
-    // autoplay. Browsers block autoplay-with-sound until the visitor interacts,
-    // so on a fresh visit playback begins on the first tap/scroll/key anywhere.
-    this.armFirstInteractionAutoplay();
-    audio.play()
-      .then(() => {
-        this.autostarted = true;
-        this.isPlaying.set(true);
-      })
-      .catch(() => { /* blocked — the interaction starter will kick in */ });
+    // Respect a remembered "off" choice — stay silent, just show the toggle.
+    if (this.readPref() === 'off') {
+      this.isOn.set(false);
+      this.needsEnable.set(false);
+      return;
+    }
+
+    // Show the "Tap to Enable Music" prompt until the visitor turns sound on,
+    // and try autoplay MUTED (browsers allow this) so the track is already
+    // rolling. Sound is unmuted on the first interaction or prompt tap.
+    this.needsEnable.set(true);
+    audio.muted = true;
+    audio.play().catch(() => { /* even muted autoplay blocked — wait for gesture */ });
+    this.armFirstInteraction();
   }
 
-  /** Start playback on the visitor's first interaction anywhere on the page. */
-  private armFirstInteractionAutoplay(): void {
+  /** Turn sound on: unmute, play, remember the choice, hide the prompt. */
+  enableSound(): void {
+    const audio = this.audioRef.nativeElement;
+    audio.muted = false;
+    audio.volume = DEFAULT_VOLUME;
+    audio.play().then(() => this.isOn.set(true)).catch(() => {});
+    this.isOn.set(true);
+    this.needsEnable.set(false);
+    this.writePref('on');
+  }
+
+  /** Turn sound off: pause and remember the choice. */
+  private disableSound(): void {
+    this.audioRef.nativeElement.pause();
+    this.isOn.set(false);
+    this.needsEnable.set(false);
+    this.writePref('off');
+  }
+
+  /** Floating ON/OFF toggle. */
+  toggle(): void {
+    if (this.isOn()) {
+      this.disableSound();
+    } else {
+      this.enableSound();
+    }
+  }
+
+  /** Start sound on the visitor's first interaction anywhere on the page. */
+  private armFirstInteraction(): void {
+    if (this.interactionArmed) return;
+    this.interactionArmed = true;
+
     const events = ['pointerdown', 'touchstart', 'keydown', 'scroll'];
     const start = (ev: Event) => {
-      if (this.autostarted) return;
-      this.autostarted = true;
       events.forEach(e => window.removeEventListener(e, start, true));
-
-      // If the gesture landed on the player's own controls, let those handle
-      // playback so we don't immediately toggle it back off.
+      // honour a meanwhile-chosen "off"; let the player's own buttons self-handle
+      if (this.readPref() === 'off' || this.isOn()) return;
       const target = ev.target as HTMLElement | null;
       if (target?.closest?.('.music-player')) return;
-
-      this.audioRef.nativeElement.play()
-        .then(() => this.isPlaying.set(true))
-        .catch(() => {});
+      this.enableSound();
     };
-    // Capture phase + passive so we catch the earliest gesture cleanly.
     events.forEach(e => window.addEventListener(e, start, { capture: true, passive: true }));
   }
 
@@ -91,48 +122,28 @@ export class MusicPlayer implements OnInit, AfterViewInit {
     return this.current()?.title ?? 'Wedding Theme';
   }
 
-  toggleExpand(): void {
-    this.isExpanded.set(!this.isExpanded());
-  }
-
-  togglePlay(): void {
-    const audio = this.audioRef.nativeElement;
-    if (audio.paused) {
-      audio.play().then(() => this.isPlaying.set(true)).catch(() => {});
-    } else {
-      audio.pause();
-      this.isPlaying.set(false);
-    }
-  }
-
-  onTimeUpdate(): void {
-    const audio = this.audioRef.nativeElement;
-    if (audio.duration) {
-      this.progress.set((audio.currentTime / audio.duration) * 100);
-    }
-  }
-
-  seek(event: Event): void {
-    const value = Number((event.target as HTMLInputElement).value);
-    const audio = this.audioRef.nativeElement;
-    if (audio.duration) {
-      audio.currentTime = (value / 100) * audio.duration;
-    }
-  }
-
-  setVolume(event: Event): void {
-    const value = Number((event.target as HTMLInputElement).value);
-    this.volume.set(value);
-    this.audioRef.nativeElement.volume = value;
-  }
-
-  /** When a track finishes, roll another random one and keep playing. */
+  /** When a track ends, roll another random one so the music plays continuously. */
   onEnded(): void {
-    this.progress.set(0);
+    const audio = this.audioRef.nativeElement;
+    const wasMuted = audio.muted;
     this.pickRandomTrack();
     this.loadCurrent();
-    this.audioRef.nativeElement.play()
-      .then(() => this.isPlaying.set(true))
-      .catch(() => this.isPlaying.set(false));
+    audio.muted = wasMuted;
+    audio.volume = DEFAULT_VOLUME;
+    audio.play().catch(() => {});
+  }
+
+  private readPref(): string | null {
+    try {
+      return localStorage.getItem(STORAGE_KEY);
+    } catch {
+      return null;
+    }
+  }
+
+  private writePref(value: 'on' | 'off'): void {
+    try {
+      localStorage.setItem(STORAGE_KEY, value);
+    } catch { /* storage unavailable (private mode) — ignore */ }
   }
 }
