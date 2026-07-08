@@ -1,6 +1,21 @@
+@import "effects";
+
 .rsvp-section {
   padding: 5rem 0;
   background: transparent; // let the floral backdrop show through
+  position: relative;
+
+  .rsvp-hearts {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
 
   .section-subtitle {
     color: var(--accent);
@@ -16,7 +31,7 @@
 
   .rsvp-card {
     width: 150px;
-    background: var(--secondary);
+    @include glass(var(--secondary), 4px);
     border: 2px solid transparent;
     border-radius: 16px;
     padding: 1.6rem 1rem;
@@ -25,21 +40,53 @@
     align-items: center;
     gap: 0.4rem;
     cursor: pointer;
-    transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
 
     i { font-size: 1.8rem; color: var(--accent); }
     span { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--text); }
     small { font-size: 0.78rem; opacity: 0.65; }
 
     &:hover { transform: translateY(-4px); }
+    &:focus-visible { @include glow(16px, rgba(212, 175, 55, 0.4)); }
 
     &.yes.active { background: #DEF7E5; border-color: #34B768; i { color: #34B768; } }
     &.maybe.active { background: #FDEFD3; border-color: #E0A229; i { color: #E0A229; } }
     &.no.active { background: #FBDDE1; border-color: var(--primary); i { color: var(--primary); } }
+
+    &.active { @include glow(20px, rgba(212, 175, 55, 0.3)); }
+  }
+
+  .rsvp-success {
+    margin-top: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .success-check {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 0.6rem;
+
+    .check-ring {
+      fill: none;
+      stroke: var(--warm-gold);
+      stroke-width: 2;
+      opacity: 0.5;
+    }
+
+    .check-path {
+      fill: none;
+      stroke: var(--warm-gold);
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.6));
+    }
   }
 
   .thank-you {
-    margin-top: 1.5rem;
+    margin: 0;
     color: var(--accent);
     font-style: italic;
   }

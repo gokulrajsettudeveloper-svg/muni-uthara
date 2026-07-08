@@ -1,3 +1,5 @@
+@import "effects";
+
 .events-section {
   padding: 5rem 0;
   background: transparent;
@@ -9,19 +11,15 @@
   }
 
   .event-card {
-    background: var(--card-bg);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    @include glass(var(--card-bg), 6px);
     border-radius: 18px;
     padding: 2rem 1.4rem;
     text-align: center;
     height: 100%;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
     &:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 14px 36px rgba(183, 110, 121, 0.18);
+      @include glow(20px, rgba(183, 110, 121, 0.28));
     }
 
     .icon-wrap {
@@ -59,6 +57,36 @@
       color: var(--text);
       opacity: 0.75;
       line-height: 1.6;
+    }
+
+    .event-venue {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0.4rem;
+      text-align: left;
+      font-size: 0.82rem;
+      color: var(--text);
+      line-height: 1.5;
+      margin: 0.9rem 0 0;
+      padding-top: 0.9rem;
+      border-top: 1px solid rgba(214, 83, 109, 0.18);
+
+      i { color: var(--accent); margin-top: 0.15rem; flex-shrink: 0; }
+      strong { font-weight: 600; }
+    }
+
+    .directions-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.7rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--primary);
+      transition: color 0.25s ease;
+
+      &:hover { color: var(--accent); }
     }
   }
 }

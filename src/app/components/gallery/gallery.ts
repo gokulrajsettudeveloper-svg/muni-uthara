@@ -1,9 +1,12 @@
 import { Component, Input, computed, signal } from '@angular/core';
 import { GalleryImage } from '../../models/wedding.model';
+import { Tilt3dDirective } from '../../core/tilt3d.directive';
+import { RevealDirective } from '../../core/reveal.directive';
 
 @Component({
   selector: 'app-gallery',
   standalone: true,
+  imports: [Tilt3dDirective, RevealDirective],
   templateUrl: './gallery.html',
   styleUrl: './gallery.scss'
 })

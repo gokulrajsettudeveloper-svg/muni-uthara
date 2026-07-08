@@ -1,75 +1,122 @@
+@import "effects";
+
 .story-section {
   padding: 1rem 0 4rem;
   background: transparent; // let the floral backdrop show through
   text-align: center;
 
-  .story-timeline {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    max-width: 900px;
-    margin: 2.5rem auto 0;
+  .heart-timeline-wrap {
+    position: relative;
+    max-width: 480px;
+    margin: 2rem auto 0;
+  }
 
-    .story-step {
-      position: relative;
-      flex: 1 1 0;
-      min-width: 140px;
+  .story-particles {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .heart-timeline {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+  }
+
+  .stop-a { stop-color: var(--warm-gold); }
+  .stop-b { stop-color: var(--primary); }
+  .stop-c { stop-color: var(--rose-gold); }
+  .glow-a { stop-color: rgba(214, 83, 109, 0.55); }
+  .glow-b { stop-color: rgba(214, 83, 109, 0); }
+
+  .heart-line {
+    fill: none;
+    stroke: url(#heartLineGradient);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.4));
+  }
+
+  .story-orb {
+    cursor: pointer;
+    outline: none;
+
+    .orb-glow {
+      fill: url(#orbGlowGradient);
+      opacity: 0.55;
+      transition: opacity 0.3s ease;
+    }
+
+    .orb-core {
+      fill: var(--primary);
+      stroke: var(--ivory);
+      stroke-width: 2;
+      transition: fill 0.3s ease;
+    }
+
+    .orb-icon {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 0.7rem;
+    }
+
+    .orb-card {
+      overflow: visible;
+      pointer-events: none;
+    }
+
+    .orb-card-inner {
+      @include glass(var(--card-bg), 4px);
+      border-radius: 12px;
+      padding: 0.4rem 0.6rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
+      opacity: 0;
+      transform: translateY(-6px) scaleY(0.85);
+      transform-origin: top center;
+      transition: opacity 0.35s ease, transform 0.35s ease;
 
-      // connecting line to the next step
-      &:not(:last-child)::after {
-        content: '';
-        position: absolute;
-        top: 28px;
-        left: 50%;
-        width: 100%;
-        height: 2px;
-        background: linear-gradient(90deg, var(--secondary), var(--primary), var(--secondary));
-        z-index: 0;
-      }
-
-      .story-icon {
-        position: relative;
-        z-index: 1;
-        width: 56px;
-        height: 56px;
-        margin: 0 auto 0.9rem;
-        border-radius: 50%;
-        background: #fff;
-        color: var(--primary);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.4rem;
-        border: 2px solid var(--secondary);
-        box-shadow: 0 4px 14px rgba(214, 83, 109, 0.18);
-      }
-
-      .story-title {
-        font-size: 1rem;
-        margin: 0 0 0.2rem;
+      strong {
+        font-family: 'Playfair Display', serif;
+        font-size: 0.78rem;
         color: var(--text);
       }
 
-      .story-date {
-        font-size: 0.8rem;
+      span {
+        font-size: 0.68rem;
         color: var(--accent);
       }
     }
-  }
 
-  @media (max-width: 600px) {
-    .story-timeline {
-      flex-direction: column;
-      align-items: center;
-
-      .story-step {
-        min-width: 0;
-        width: 100%;
-
-        &:not(:last-child)::after { display: none; }
-      }
+    &:hover .orb-glow,
+    &.active .orb-glow {
+      opacity: 0.9;
     }
+
+    &.active .orb-card-inner {
+      opacity: 1;
+      transform: translateY(0) scaleY(1);
+    }
+
+    &:focus-visible .orb-core {
+      fill: var(--warm-gold);
+    }
+  }
+}
+
+@media (max-width: 575.98px) {
+  .story-section .heart-timeline-wrap {
+    max-width: 320px;
   }
 }

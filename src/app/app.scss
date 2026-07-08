@@ -1,27 +1,4 @@
-.loading-screen {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Playfair Display', serif;
-
-  .spinner {
-    width: 48px;
-    height: 48px;
-    border: 3px solid var(--secondary);
-    border-top-color: var(--primary);
-    border-radius: 50%;
-    animation: spin 0.9s linear infinite;
-    margin-bottom: 1rem;
-  }
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
+@import "effects";
 
 // Intro gate — a full-screen landing card. The visitor's tap to enter both
 // reveals the site and lets the background music start with sound.
@@ -59,8 +36,8 @@
     font-family: 'Playfair Display', serif;
     font-size: 1.9rem;
     letter-spacing: 5px;
-    color: var(--primary);
     margin-bottom: 1.4rem;
+    @include gradient-text(var(--primary), var(--warm-gold));
   }
 
   .intro-eyebrow {
@@ -99,13 +76,13 @@
     font-size: 0.85rem;
     padding: 0.9rem 2.2rem;
     border-radius: 50px;
-    box-shadow: 0 12px 30px rgba(212, 175, 55, 0.45);
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     animation: intro-pulse 2.2s ease-in-out infinite;
+    @include glow(24px, rgba(212, 175, 55, 0.5));
 
     i { margin-right: 0.5rem; }
-    &:hover { transform: translateY(-3px); box-shadow: 0 16px 36px rgba(212, 175, 55, 0.55); }
+    &:hover { transform: translateY(-3px); @include glow(32px, rgba(212, 175, 55, 0.65)); }
   }
 
   .intro-music {

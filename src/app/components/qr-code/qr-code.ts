@@ -1,8 +1,10 @@
 import { Component, OnInit, signal } from '@angular/core';
+import { RevealDirective } from '../../core/reveal.directive';
 
 @Component({
   selector: 'app-qr-code',
   standalone: true,
+  imports: [RevealDirective],
   templateUrl: './qr-code.html',
   styleUrl: './qr-code.scss'
 })

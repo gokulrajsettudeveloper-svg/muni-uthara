@@ -1,11 +1,11 @@
 <section class="qr-section" id="qr-code">
   <div class="container text-center">
-    <h2 class="section-title" data-aos="fade-up">Scan &amp; Share</h2>
-    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+    <h2 class="section-title" appReveal="fade">Scan &amp; Share</h2>
+    <p class="section-subtitle" appReveal="fade" [revealDelay]="0.1">
       Scan this code to open our invitation instantly
     </p>
 
-    <div class="qr-card" data-aos="zoom-in" data-aos-delay="150">
+    <div class="qr-card" appReveal="zoom" [revealDelay]="0.15">
       @if (qrDataUrl()) {
         <img [src]="qrDataUrl()" alt="Wedding invitation QR code">
       } @else {
@@ -13,7 +13,7 @@
       }
     </div>
 
-    <div class="qr-actions" data-aos="fade-up" data-aos-delay="200">
+    <div class="qr-actions" appReveal="fade" [revealDelay]="0.2">
       <button class="btn btn-qr" (click)="download()">
         <i class="bi bi-download"></i> Download
       </button>

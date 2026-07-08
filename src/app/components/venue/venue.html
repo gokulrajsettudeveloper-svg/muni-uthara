@@ -1,10 +1,18 @@
 <section class="venue-section" id="venue">
   <div class="container">
-    <h2 class="section-title text-center" data-aos="fade-up">Wedding Venue</h2>
+    <h2 class="section-title text-center" appReveal="fade">Wedding Venue</h2>
 
     <div class="row g-4 align-items-center mt-3">
-      <div class="col-lg-5" data-aos="fade-right">
-        <div class="venue-info">
+      <div class="col-lg-5" appReveal="parallax">
+        <div class="venue-info glass-island">
+          <div class="map-pin" aria-hidden="true">
+            <i class="bi bi-geo-alt-fill"></i>
+          </div>
+
+          <svg class="route-line" viewBox="0 0 200 40" aria-hidden="true" preserveAspectRatio="none">
+            <path d="M4,34 C40,4 80,34 120,10 C150,-6 180,20 196,6" />
+          </svg>
+
           <h3>{{ venue.name }}</h3>
           <p class="address"><i class="bi bi-geo-alt-fill"></i> {{ venue.address }}</p>
           <a [href]="venue.mapDirectionsUrl" target="_blank" rel="noopener" class="btn btn-directions">
@@ -12,8 +20,8 @@
           </a>
         </div>
       </div>
-      <div class="col-lg-7" data-aos="fade-left">
-        <div class="map-wrap">
+      <div class="col-lg-7" appReveal="fade">
+        <div class="map-wrap glass-island">
           <iframe
             [src]="safeMapUrl"
             width="100%"

@@ -1,11 +1,11 @@
 <section class="share-section" id="share">
   <div class="container text-center">
-    <h2 class="section-title" data-aos="fade-up">Share Our Joy</h2>
-    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+    <h2 class="section-title" appReveal="fade">Share Our Joy</h2>
+    <p class="section-subtitle" appReveal="fade" [revealDelay]="0.1">
       Spread the love &mdash; invite your friends and family
     </p>
 
-    <div class="share-buttons" data-aos="zoom-in" data-aos-delay="150">
+    <div class="share-buttons" appReveal="zoom" [revealDelay]="0.15">
       <a [href]="whatsappLink" target="_blank" rel="noopener" class="share-btn whatsapp">
         <i class="bi bi-whatsapp"></i>
       </a>
@@ -24,7 +24,7 @@
     </div>
 
     @if (copied()) {
-      <p class="copied-msg" data-aos="fade-in">Link copied!</p>
+      <p class="copied-msg" appReveal="fade">Link copied!</p>
     }
   </div>
 </section>

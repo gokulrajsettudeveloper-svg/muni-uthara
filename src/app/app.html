@@ -1,5 +1,9 @@
 <app-navbar></app-navbar>
 
+@if (showLoadingScreen()) {
+  <app-loading-screen [ready]="!!data()" (finished)="onLoadingFinished()"></app-loading-screen>
+}
+
 @if (data()) {
   @if (showIntro()) {
     <div class="intro-overlay" [class.closing]="introClosing()" (click)="enterSite()">
@@ -32,11 +36,6 @@
   <app-friendship-tribute [friendName]="data()!.tribute.friendName" [photo]="data()!.tribute.photo" [message]="data()!.tribute.message"></app-friendship-tribute>
   <app-share></app-share>
   <app-qr-code></app-qr-code>
-  <app-footer [createdBy]="data()!.site.createdBy"></app-footer>
+  <app-footer [createdBy]="data()!.site.createdBy" [social]="data()!.social"></app-footer>
   <app-music-player [tracks]="data()!.music.tracks"></app-music-player>
-} @else {
-  <div class="loading-screen">
-    <div class="spinner"></div>
-    <p>Loading our story...</p>
-  </div>
 }

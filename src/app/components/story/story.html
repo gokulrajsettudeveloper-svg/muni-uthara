@@ -1,15 +1,55 @@
 <section class="story-section" id="story">
   <div class="container">
-    <h2 class="section-title text-center d-block" data-aos="fade-up">Our Story</h2>
+    <h2 class="section-title text-center d-block" appReveal="fade">Our Story</h2>
 
-    <div class="story-timeline" data-aos="fade-up" data-aos-delay="100">
-      @for (item of milestones; track item.title; let i = $index) {
-        <div class="story-step">
-          <div class="story-icon"><i class="bi {{ item.icon }}"></i></div>
-          <h3 class="story-title">{{ item.title }}</h3>
-          <span class="story-date">{{ item.date }}</span>
-        </div>
-      }
+    <div class="heart-timeline-wrap" #svgWrap>
+      <app-particle-field #particleField class="story-particles" preset="sparkles" density="low"></app-particle-field>
+
+      <svg class="heart-timeline" viewBox="0 0 340 340" role="img" aria-label="Our love story, as a heart-shaped timeline">
+        <defs>
+          <linearGradient id="heartLineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" class="stop-a" />
+            <stop offset="50%" class="stop-b" />
+            <stop offset="100%" class="stop-c" />
+          </linearGradient>
+          <radialGradient id="orbGlowGradient" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" class="glow-a" />
+            <stop offset="100%" class="glow-b" />
+          </radialGradient>
+        </defs>
+
+        <path class="heart-line" [attr.d]="pathD" />
+
+        @for (point of positioned; track point.milestone.title) {
+          <g
+            #orbGroup
+            class="story-orb"
+            [class.active]="activeIndex() === point.index"
+            [attr.transform]="'translate(' + point.x + ',' + point.y + ')'"
+            (click)="selectMilestone(point.index)"
+            (keydown.enter)="selectMilestone(point.index)"
+            tabindex="0"
+            role="button"
+            [attr.aria-label]="point.milestone.title + ', ' + point.milestone.date"
+          >
+            <circle class="orb-glow" r="22"></circle>
+            <circle class="orb-core" r="11"></circle>
+
+            <foreignObject x="-11" y="-11" width="22" height="22">
+              <div class="orb-icon" xmlns="http://www.w3.org/1999/xhtml">
+                <i class="bi {{ point.milestone.icon }}"></i>
+              </div>
+            </foreignObject>
+
+            <foreignObject class="orb-card" [attr.x]="point.cardOffsetX" y="16" width="144" height="72">
+              <div class="orb-card-inner" xmlns="http://www.w3.org/1999/xhtml">
+                <strong>{{ point.milestone.title }}</strong>
+                <span>{{ point.milestone.date }}</span>
+              </div>
+            </foreignObject>
+          </g>
+        }
+      </svg>
     </div>
   </div>
 </section>

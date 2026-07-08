@@ -1,19 +1,29 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Couple } from '../../models/wedding.model';
+import { SmoothScrollService } from '../../core/smooth-scroll.service';
+import { MotionPreferenceService } from '../../core/motion-preference.service';
+import { ParticleField } from '../../core/particle-field/particle-field';
+import { Tilt3dDirective } from '../../core/tilt3d.directive';
+import { RevealDirective } from '../../core/reveal.directive';
+import { HeroScene } from './hero-scene/hero-scene';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [DatePipe],
+  imports: [DatePipe, ParticleField, Tilt3dDirective, RevealDirective, HeroScene],
   templateUrl: './hero.html',
   styleUrl: './hero.scss'
 })
 export class Hero {
   @Input({ required: true }) couple!: Couple;
 
+  private readonly motion = inject(MotionPreferenceService);
+  readonly isConstrainedDevice = this.motion.isConstrainedDevice;
+
+  constructor(private smoothScroll: SmoothScrollService) {}
+
   scrollToInvite(): void {
-    document.getElementById('invitation')?.scrollIntoView({ behavior: 'smooth' });
+    this.smoothScroll.scrollToEl('invitation');
   }
 }
-

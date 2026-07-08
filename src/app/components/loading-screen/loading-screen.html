@@ -1,0 +1,24 @@
+<div class="loading-screen" role="status" aria-live="polite">
+  <app-particle-field class="loading-particles" preset="petals" density="low"></app-particle-field>
+
+  <div class="loading-content">
+    <svg class="loading-rings" viewBox="0 0 220 220" aria-hidden="true">
+      <g #ringOuter class="ring-group">
+        <circle class="ring ring-outer" cx="110" cy="110" r="98" />
+      </g>
+      <g #ringInner class="ring-group">
+        <circle class="ring ring-inner" cx="110" cy="110" r="80" />
+      </g>
+      <g class="heart-group" transform="translate(57, 63) scale(1.05)">
+        <path
+          #heartPath
+          class="heart-path"
+          d="M50,88 C20,65 5,45 5,28 C5,10 20,2 33,10 C42,15 50,28 50,28 C50,28 58,15 67,10 C80,2 95,10 95,28 C95,45 80,65 50,88 Z"
+        />
+      </g>
+    </svg>
+
+    <h1 class="loading-title">Our Love Story</h1>
+    <p class="loading-subtitle">Loading our story&hellip;</p>
+  </div>
+</div>

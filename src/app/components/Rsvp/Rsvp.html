@@ -1,11 +1,13 @@
 <section class="rsvp-section" id="rsvp">
+  <app-particle-field #heartField class="rsvp-hearts" preset="hearts" density="low"></app-particle-field>
+
   <div class="container text-center">
-    <h2 class="section-title" data-aos="fade-up">Will You Attend?</h2>
-    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+    <h2 class="section-title" appReveal="fade">Will You Attend?</h2>
+    <p class="section-subtitle" appReveal="fade" [revealDelay]="0.1">
       Please let us know your response
     </p>
 
-    <div class="rsvp-options" data-aos="zoom-in" data-aos-delay="150">
+    <div class="rsvp-options" appReveal="zoom" [revealDelay]="0.15">
       <button class="rsvp-card yes" [class.active]="choice() === 'yes'" (click)="select('yes')">
         <i class="bi bi-check-circle-fill"></i>
         <span>Yes</span>
@@ -26,7 +28,13 @@
     </div>
 
     @if (submitted()) {
-      <p class="thank-you" data-aos="fade-up">Thank you for your response!</p>
+      <div class="rsvp-success" role="status" aria-live="polite">
+        <svg class="success-check" viewBox="0 0 60 60" aria-hidden="true">
+          <circle class="check-ring" cx="30" cy="30" r="26"></circle>
+          <path #checkPath class="check-path" d="M16,31 L26,41 L45,20"></path>
+        </svg>
+        <p class="thank-you">Thank you for your response!</p>
+      </div>
     }
   </div>
 </section>

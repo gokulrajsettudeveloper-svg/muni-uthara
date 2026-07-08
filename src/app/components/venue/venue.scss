@@ -1,3 +1,5 @@
+@import "effects";
+
 .venue-section {
   padding: 5rem 0;
   // translucent tint so the floral backdrop still reads through the gradient
@@ -9,13 +11,55 @@
     font-size: 2.2rem;
   }
 
-  .venue-info {
-    background: var(--card-bg);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+  .glass-island {
+    @include glass(var(--card-bg), 6px);
     border-radius: 20px;
+  }
+
+  .venue-info {
+    position: relative;
     padding: 2.5rem;
-    box-shadow: 0 10px 35px rgba(0,0,0,0.06);
+    overflow: visible;
+
+    .map-pin {
+      position: absolute;
+      top: -22px;
+      left: 2.5rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(-45deg);
+      background: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pin-bounce 2.4s ease-in-out infinite;
+      @include glow(16px, rgba(212, 175, 55, 0.45));
+
+      i {
+        transform: rotate(45deg);
+        color: #fff;
+        font-size: 1.1rem;
+      }
+    }
+
+    .route-line {
+      position: absolute;
+      top: 0.5rem;
+      right: 1.5rem;
+      width: 100px;
+      height: 20px;
+      opacity: 0.6;
+
+      path {
+        fill: none;
+        stroke: var(--warm-gold);
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-dasharray: 4 6;
+        animation: route-dash 3s linear infinite;
+      }
+    }
 
     h3 {
       font-family: 'Playfair Display', serif;
@@ -33,6 +77,7 @@
     }
 
     .btn-directions {
+      position: relative;
       background: var(--primary);
       color: #fff;
       border: none;
@@ -44,6 +89,17 @@
       align-items: center;
       gap: 0.5rem;
       transition: transform 0.3s ease;
+      overflow: visible;
+
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        border: 2px solid var(--warm-gold);
+        opacity: 0;
+        animation: btn-ripple 2.4s ease-out infinite;
+      }
 
       &:hover {
         transform: translateY(-3px);
@@ -53,12 +109,32 @@
   }
 
   .map-wrap {
-    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 10px 35px rgba(0,0,0,0.08);
 
     iframe {
       display: block;
     }
+  }
+}
+
+@keyframes pin-bounce {
+  0%, 100% { transform: rotate(-45deg) translateY(0); }
+  50% { transform: rotate(-45deg) translateY(-8px); }
+}
+
+@keyframes route-dash {
+  to { stroke-dashoffset: -20; }
+}
+
+@keyframes btn-ripple {
+  0% { transform: scale(1); opacity: 0.55; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .venue-section .map-pin,
+  .venue-section .route-line path,
+  .venue-section .btn-directions::after {
+    animation: none !important;
   }
 }

@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RevealDirective } from '../../core/reveal.directive';
 
 interface Wish {
   name: string;
@@ -10,7 +11,7 @@ interface Wish {
 @Component({
   selector: 'app-guest-wishes',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RevealDirective],
   templateUrl: './guest-wishes.html',
   styleUrl: './guest-wishes.scss'
 })

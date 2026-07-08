@@ -35,7 +35,8 @@
   .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1rem;
+    gap: 1.4rem;
+    perspective: 1400px;
 
     .gallery-item {
       position: relative;
@@ -43,6 +44,17 @@
       overflow: hidden;
       cursor: pointer;
       aspect-ratio: 4 / 5;
+      transform-style: preserve-3d;
+      box-shadow: 0 14px 34px rgba(61, 12, 31, 0.16);
+    }
+
+    // Separate element for the ambient float animation, so it never fights
+    // the appTilt3d hover transform on the outer .gallery-item.
+    .gallery-item-inner {
+      position: absolute;
+      inset: 0;
+      animation: float-photo 5s ease-in-out infinite;
+      animation-delay: var(--float-delay, 0s);
 
       img {
         width: 100%;
@@ -67,13 +79,18 @@
 
         i { font-size: 1.5rem; margin-bottom: 0.5rem; }
       }
+    }
 
-      &:hover {
-        img { transform: scale(1.08); }
-        .overlay { opacity: 1; }
-      }
+    .gallery-item:hover .gallery-item-inner {
+      img { transform: scale(1.08); }
+      .overlay { opacity: 1; }
     }
   }
+}
+
+@keyframes float-photo {
+  0%, 100% { transform: translateY(0) rotateZ(0deg); }
+  50% { transform: translateY(-6px) rotateZ(0.6deg); }
 }
 
 .lightbox {
@@ -86,12 +103,24 @@
   align-items: center;
   justify-content: center;
   padding: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+
+  &.open {
+    opacity: 1;
+    pointer-events: auto;
+
+    img { transform: scale(1); }
+  }
 
   img {
     max-width: 90vw;
     max-height: 80vh;
     border-radius: 12px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    transform: scale(0.9);
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
 
   .caption {
@@ -111,5 +140,11 @@
     height: 44px;
     border-radius: 50%;
     font-size: 1.1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-grid .gallery-item {
+    animation: none !important;
   }
 }

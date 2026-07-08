@@ -1,6 +1,20 @@
+@import "effects";
+
 .couple-section {
   padding: 5rem 0;
   background: transparent;
+  position: relative;
+
+  .couple-petals {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
 
   .section-title {
     font-family: 'Playfair Display', serif;
@@ -21,19 +35,32 @@
   }
 
   .couple-card {
-    background: var(--card-bg);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    position: relative;
+    @include glass(var(--card-bg), 6px);
     border-radius: 20px;
     padding: 2.5rem 1.5rem;
     text-align: center;
-    box-shadow: 0 10px 35px rgba(0,0,0,0.06);
     transition: transform 0.35s ease, box-shadow 0.35s ease;
     height: 100%;
 
+    // Animated conic-gradient glow ring, revealed on hover — sits behind the
+    // card via a negative z-offset so it only peeks out at the edges.
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      z-index: -1;
+      border-radius: inherit;
+      background: conic-gradient(from 0deg, var(--warm-gold), var(--primary), var(--rose-gold), var(--warm-gold));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      animation: spin-glow 6s linear infinite;
+    }
+
     &:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 16px 45px rgba(212, 175, 55, 0.18);
+      box-shadow: 0 16px 45px rgba(212, 175, 55, 0.22);
+
+      &::before { opacity: 0.75; }
     }
 
     .photo-wrap {
@@ -75,4 +102,8 @@
       line-height: 1.6;
     }
   }
+}
+
+@keyframes spin-glow {
+  to { transform: rotate(360deg); }
 }

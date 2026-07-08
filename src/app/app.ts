@@ -1,8 +1,9 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import AOS from 'aos';
+import { SmoothScrollService } from './core/smooth-scroll.service';
 import { WeddingDataService } from './services/wedding-data.service';
 import { WeddingData } from './models/wedding.model';
+import { LoadingScreen } from './components/loading-screen/loading-screen';
 import { Navbar } from './components/navbar/navbar';
 import { Hero } from './components/hero/hero';
 import { CoupleSection } from './components/couple/couple';
@@ -26,6 +27,7 @@ import { Footer } from './components/footer/footer';
   standalone: true,
   imports: [
     DatePipe,
+    LoadingScreen,
     Navbar,
     Hero,
     CoupleSection,
@@ -54,8 +56,12 @@ export class App implements OnInit {
    *  start with sound (browsers block un-muted autoplay before any gesture). */
   readonly showIntro = signal(true);
   readonly introClosing = signal(false);
+  readonly showLoadingScreen = signal(true);
 
-  constructor(private weddingData: WeddingDataService) {}
+  constructor(
+    private weddingData: WeddingDataService,
+    private smoothScroll: SmoothScrollService
+  ) {}
 
   /** Dismiss the intro. The tap itself is caught by the music player's
    *  first-interaction listener, which unmutes and plays (respecting a saved
@@ -66,16 +72,13 @@ export class App implements OnInit {
     setTimeout(() => this.showIntro.set(false), 600);
   }
 
+  onLoadingFinished(): void {
+    this.showLoadingScreen.set(false);
+  }
+
   async ngOnInit(): Promise<void> {
+    this.smoothScroll.init();
     const result = await this.weddingData.load();
     this.data.set(result);
-
-    setTimeout(() => {
-      AOS.init({
-        duration: 800,
-        once: true,
-        easing: 'ease-out-cubic'
-      });
-    });
   }
 }

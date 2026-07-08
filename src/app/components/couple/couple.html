@@ -1,17 +1,19 @@
 <section class="couple-section" id="couple">
+  <app-particle-field class="couple-petals" preset="petals" density="low"></app-particle-field>
+
   <div class="container">
-    <h2 class="section-title text-center" data-aos="fade-up">The Happy Couple</h2>
-    <p class="section-subtitle text-center" data-aos="fade-up" data-aos-delay="100">{{ couple.hashtag }}</p>
+    <h2 class="section-title text-center" appReveal="fade">The Happy Couple</h2>
+    <p class="section-subtitle text-center" appReveal="fade" [revealDelay]="0.1">{{ couple.hashtag }}</p>
 
     <div class="row justify-content-center g-4 mt-4">
-      <div class="col-md-5" data-aos="flip-left" data-aos-delay="150">
-        <div class="couple-card">
+      <div class="col-md-5" appReveal="rotate" [revealDelay]="0.15">
+        <div class="couple-card" appTilt3d>
           <div class="photo-wrap">
             <img [src]="couple.bride.photo" [alt]="couple.bride.name" loading="lazy">
           </div>
           <h3>{{ couple.bride.name }}</h3>
           @if (couple.bride.occupation.trim()) {
-            <p class="occupation">{{ couple.bride.occupation }}</p>
+            <p class="occupation">{{ couple.bride.occupation.trim() }}</p>
           }
           <p class="description">{{ couple.bride.description }}</p>
         </div>
@@ -21,14 +23,14 @@
         <span class="couple-divider">&amp;</span>
       </div>
 
-      <div class="col-md-5" data-aos="flip-right" data-aos-delay="150">
-        <div class="couple-card">
+      <div class="col-md-5" appReveal="rotate" [revealDelay]="0.15">
+        <div class="couple-card" appTilt3d>
           <div class="photo-wrap">
             <img [src]="couple.groom.photo" [alt]="couple.groom.name" loading="lazy">
           </div>
           <h3>{{ couple.groom.name }}</h3>
           @if (couple.groom.occupation.trim()) {
-            <p class="occupation">{{ couple.groom.occupation }}</p>
+            <p class="occupation">{{ couple.groom.occupation.trim() }}</p>
           }
           <p class="description">{{ couple.groom.description }}</p>
         </div>

@@ -28,8 +28,8 @@
   "story": [
     { "title": "First Meeting", "date": "12 May 2019", "icon": "bi-cup-hot-fill" },
     { "title": "Started Dating", "date": "20 Aug 2020", "icon": "bi-heart-fill" },
-    { "title": "Engaged", "date": "20 Aug 2026", "icon": "bi-gem" },
-    { "title": "Forever Together", "date": "21 Aug 2026", "icon": "bi-infinity" }
+    { "title": "Engaged", "date": "22 Aug 2026", "icon": "bi-gem" },
+    { "title": "Forever Together", "date": "23 Aug 2026", "icon": "bi-infinity" }
   ],
   "parents": [
     {
@@ -48,24 +48,30 @@
   "events": [
     {
       "title": "Engagement",
-      "date": "20 Aug 2026",
+      "date": "22 Aug 2026",
       "time": "06:00 PM",
       "description": "An intimate ceremony with close family to celebrate the promise of forever.",
-      "icon": "bi-gem"
+      "icon": "bi-gem",
+      "venue": "",
+      "address": ""
     },
     {
       "title": "Wedding Ceremony",
-      "date": "21 Aug 2026",
+      "date": "23 Aug 2026",
       "time": "05:00 AM",
       "description": "The main ceremony uniting two families with timeless traditions.",
-      "icon": "bi-heart-fill"
+      "icon": "bi-heart-fill",
+      "venue": "Thaiyalnayagi Udanurai Vaitheeswaran koil ( Vaitheeswaran kovil ) வைத்தீஸ்வரன் கோயில் வாழப்பாடி",
+      "address": "Salem, Tamil Nadu, India"
     },
     {
       "title": "Reception",
       "date": "25 Aug 2026",
       "time": "05:00 PM - 10:00 PM",
       "description": "An evening of celebration, music and joy with all our loved ones.",
-      "icon": "bi-stars"
+      "icon": "bi-stars",
+      "venue": "Koothapadayachi Palaniammal (Valapadiyar) Thirumana Mandapam",
+      "address": "Salem, Tamil Nadu, India"
     }
   ],
   "venue": {

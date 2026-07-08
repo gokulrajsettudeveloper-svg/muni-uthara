@@ -2,7 +2,7 @@
   <audio #audioRef (ended)="onEnded()" preload="auto"></audio>
 
   @if (needsEnable()) {
-    <button class="music-enable" (click)="enableSound()" data-aos="fade-left">
+    <button class="music-enable" (click)="enableSound()">
       <i class="bi bi-music-note-beamed"></i> Tap to Enable Music
     </button>
   }
@@ -13,6 +13,13 @@
     (click)="toggle()"
     [title]="isOn() ? 'Music on — tap to mute' : 'Music off — tap to play'"
     [attr.aria-label]="isOn() ? 'Turn music off' : 'Turn music on'">
-    <i class="bi" [class.bi-disc-fill]="isOn()" [class.bi-volume-mute-fill]="!isOn()"></i>
+    <span class="vinyl" aria-hidden="true">
+      <span class="vinyl-grooves"></span>
+      <span class="vinyl-label"><i class="bi bi-heart-fill"></i></span>
+      <span class="tonearm"></span>
+    </span>
+    <span class="equalizer" aria-hidden="true">
+      <span></span><span></span><span></span><span></span>
+    </span>
   </button>
 </div>

@@ -1,11 +1,11 @@
 <section class="tribute-section" id="tribute">
   <div class="container">
-    <h2 class="section-title text-center d-block" data-aos="fade-up">A Gift From Your Friend</h2>
-    <p class="section-subtitle text-center" data-aos="fade-up" data-aos-delay="100">
+    <h2 class="section-title text-center d-block" appReveal="fade">A Gift From Your Friend</h2>
+    <p class="section-subtitle text-center" appReveal="fade" [revealDelay]="0.1">
       With love, {{ friendName }}
     </p>
 
-    <div class="tribute-card" data-aos="zoom-in" data-aos-delay="150">
+    <div class="tribute-card" appReveal="zoom" [revealDelay]="0.15">
       <div class="photo-wrap">
         <img [src]="photo" [alt]="'Me and ' + friendName" loading="lazy">
       </div>

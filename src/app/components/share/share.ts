@@ -1,8 +1,10 @@
 import { Component, signal } from '@angular/core';
+import { RevealDirective } from '../../core/reveal.directive';
 
 @Component({
   selector: 'app-share',
   standalone: true,
+  imports: [RevealDirective],
   templateUrl: './share.html',
   styleUrl: './share.scss'
 })

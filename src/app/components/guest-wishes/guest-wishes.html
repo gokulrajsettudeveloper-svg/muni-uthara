@@ -1,9 +1,9 @@
 <section class="wishes-section" id="wishes">
   <div class="container">
-    <h2 class="section-title text-center" data-aos="fade-up">Kind Words</h2>
+    <h2 class="section-title text-center" appReveal="fade">Kind Words</h2>
 
     <div class="row g-4 mt-3">
-      <div class="col-lg-5" data-aos="fade-right">
+      <div class="col-lg-5" appReveal="fade">
         <div class="wish-form">
           <input
             type="text"
@@ -21,7 +21,7 @@
         </div>
       </div>
 
-      <div class="col-lg-7" data-aos="fade-left">
+      <div class="col-lg-7" appReveal="fade" [revealDelay]="0.1">
         <div class="wish-list">
           @for (wish of wishes(); track wish.date + wish.name) {
             <div class="wish-card">

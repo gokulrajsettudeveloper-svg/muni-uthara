@@ -1,3 +1,5 @@
+@import "effects";
+
 .parents-section {
   padding: 5rem 0;
   background: transparent;
@@ -14,19 +16,16 @@
   }
 
   .parents-card {
-    background: var(--card-bg);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    @include glass(var(--card-bg), 6px);
     border-radius: 20px;
     padding: 2.5rem 1.5rem;
     text-align: center;
-    box-shadow: 0 10px 35px rgba(0,0,0,0.06);
     transition: transform 0.35s ease, box-shadow 0.35s ease;
     height: 100%;
 
     &:hover {
       transform: translateY(-8px);
-      box-shadow: 0 16px 45px rgba(212, 175, 55, 0.18);
+      @include glow(24px, rgba(212, 175, 55, 0.3));
     }
 
     .parents-side {
