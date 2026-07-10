@@ -19,9 +19,30 @@ export class SmoothScrollService {
 
   private lenis?: Lenis;
   private tickerFn?: (time: number) => void;
+  private initialized = false;
 
   init(): void {
-    if (typeof window === 'undefined' || this.lenis) return;
+    if (typeof window === 'undefined' || this.initialized) return;
+    this.initialized = true;
+
+    // Every section's appReveal/ScrollTrigger start/end position is measured
+    // in pixels at the moment each component mounts — which happens well
+    // before the Great Vibes/Playfair Display webfonts finish downloading.
+    // Without a refresh once layout actually settles, every trigger point on
+    // the page stays calculated against the fallback-font layout, so scroll
+    // reveals fire at subtly wrong positions for the rest of the session.
+    this.ngZone.runOutsideAngular(() => {
+      const refresh = () => ScrollTrigger.refresh();
+      if ('fonts' in document) {
+        document.fonts.ready.then(refresh);
+      }
+      if (document.readyState === 'complete') {
+        refresh();
+      } else {
+        window.addEventListener('load', refresh, { once: true });
+      }
+    });
+
     if (this.motion.prefersReducedMotion()) return;
 
     this.ngZone.runOutsideAngular(() => {

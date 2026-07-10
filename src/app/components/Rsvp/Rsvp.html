@@ -1,6 +1,20 @@
 <section class="rsvp-section" id="rsvp">
   <app-particle-field #heartField class="rsvp-hearts" preset="hearts" density="low"></app-particle-field>
 
+  <!-- Cupid's arrow + crystal glass heart ornaments -->
+  <svg class="ornament ornament-cupid-arrow" viewBox="0 0 160 90" aria-hidden="true">
+    <line class="arrow-shaft" x1="10" y1="80" x2="130" y2="20" />
+    <path class="arrow-head" d="M130,20 L112,16 L120,32 Z" />
+    <path class="arrow-fletch-a" d="M10,80 L26,66 L20,86 Z" />
+    <path class="arrow-fletch-b" d="M10,80 L28,78 L14,94 Z" />
+    <path class="arrow-heart" d="M70,50 C62,42 50,44 50,54 C50,64 70,76 70,76 C70,76 90,64 90,54 C90,44 78,42 70,50 Z" />
+  </svg>
+
+  <svg class="ornament ornament-glass-heart" viewBox="0 0 100 90" aria-hidden="true">
+    <path class="glass-heart-shape" d="M50,84 C22,64 6,46 6,28 C6,12 20,4 32,11 C41,16 50,28 50,28 C50,28 59,16 68,11 C80,4 94,12 94,28 C94,46 78,64 50,84 Z" />
+    <path class="glass-heart-shine" d="M28,24 C24,30 24,38 28,44" />
+  </svg>
+
   <div class="container text-center">
     <h2 class="section-title" appReveal="fade">Will You Attend?</h2>
     <p class="section-subtitle" appReveal="fade" [revealDelay]="0.1">

@@ -1,13 +1,15 @@
 import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild, effect, inject, signal } from '@angular/core';
 import gsap from 'gsap';
 import { MotionPreferenceService } from '../../core/motion-preference.service';
-import { ParticleField } from '../../core/particle-field/particle-field';
-import { CountdownScene } from './countdown-scene/countdown-scene';
 
+/**
+ * Compact countdown widget embedded directly inside the Hero section (no
+ * longer a standalone page section, and no longer owns its own WebGL scene —
+ * Hero's own night-sky backdrop already covers that).
+ */
 @Component({
   selector: 'app-countdown',
   standalone: true,
-  imports: [ParticleField, CountdownScene],
   templateUrl: './countdown.html',
   styleUrl: './countdown.scss'
 })
@@ -26,7 +28,6 @@ export class Countdown implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('secondsEl') secondsEl?: ElementRef<HTMLElement>;
 
   private readonly motion = inject(MotionPreferenceService);
-  readonly isConstrainedDevice = this.motion.isConstrainedDevice;
 
   private timerId?: ReturnType<typeof setInterval>;
   private viewReady = false;

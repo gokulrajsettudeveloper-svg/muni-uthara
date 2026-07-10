@@ -5,11 +5,11 @@
   --primary: #D6536D;     /* rose-red buttons, badges, headings accent */
   --secondary: #FBE4E4;   /* soft pink backgrounds */
   --accent: #B33951;      /* deeper rose for labels/links */
-  --bg: #FFF9F3;          /* warm cream page background */
+  --bg: #FFFDF8;          /* soft ivory page background */
   --text: #3A2333;        /* deep plum body text */
   --dark: #3D0C1F;        /* maroon navbar / footer */
   --script: 'Great Vibes', cursive;  /* elegant calligraphy for section titles */
-  --card-bg: rgba(255, 252, 250, 0.78); /* frosted card fill so the floral backdrop reads through */
+  --card-bg: rgba(255, 252, 250, 0.78); /* frosted card fill so the gradient backdrop reads through */
 }
 
 * {
@@ -35,15 +35,16 @@ section[id] {
   scroll-margin-top: 70px;
 }
 
-// Floral backdrop pinned to the viewport. We use a fixed layer instead of
-// `background-attachment: fixed` because that is not rendered on most mobile
-// browsers (iOS Safari / Android Chrome), which left the background blank.
+// Soft ivory → blush → champagne gradient backdrop for every section below
+// the Hero (which keeps its own full-bleed cinematic photo). A fixed layer
+// instead of `background-attachment: fixed`, since that isn't rendered on
+// most mobile browsers (iOS Safari / Android Chrome).
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   z-index: -1;
-  background: var(--bg) url('/assets/images/floral-bg.png') center / cover no-repeat;
+  background: linear-gradient(180deg, var(--bg) 0%, var(--blush) 45%, var(--champagne) 100%);
   pointer-events: none;
 }
 
@@ -85,57 +86,6 @@ a {
   margin-top: 0.4rem;
 }
 
-/* ---- Floral corner decorations (matches reference design) ---- */
-$floral-sections:
-  '.invitation-section',
-  '.countdown-section',
-  '.venue-section',
-  '.events-section',
-  '.tribute-section',
-  '.share-section',
-  '.qr-section';
-
-@each $s in $floral-sections {
-  #{$s} {
-    position: relative;
-    overflow: hidden;
-
-    /* keep real content above the decorations */
-    > * { position: relative; z-index: 1; }
-
-    &::before,
-    &::after {
-      content: '';
-      position: absolute;
-      width: clamp(110px, 15vw, 220px);
-      height: clamp(110px, 15vw, 220px);
-      background: url('/assets/images/floral-corner.svg') no-repeat center / contain;
-      pointer-events: none;
-      opacity: 0.85;
-      z-index: 0;
-    }
-
-    /* dense cluster anchored bottom-left */
-    &::before { left: -14px; bottom: -14px; }
-
-    /* mirrored to top-right */
-    &::after {
-      right: -14px;
-      top: -14px;
-      transform: rotate(180deg);
-    }
-  }
-}
-
-/* On narrow phones the florals crowd the content — shrink & fade them */
-@media (max-width: 575.98px) {
-  @each $s in $floral-sections {
-    #{$s} {
-      &::before, &::after {
-        width: 84px;
-        height: 84px;
-        opacity: 0.6;
-      }
-    }
-  }
-}
+/* Per-section decorative 3D/SVG motifs now live in each section's own
+   component (see core/ornaments) — a distinct combination per section
+   instead of one repeating floral-corner treatment everywhere. */

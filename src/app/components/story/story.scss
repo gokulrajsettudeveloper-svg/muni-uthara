@@ -4,6 +4,56 @@
   padding: 1rem 0 4rem;
   background: transparent; // let the floral backdrop show through
   text-align: center;
+  position: relative;
+  overflow: hidden; // ornaments bleed slightly past the edge by design
+
+  .ornament-pearls {
+    @include ornament(9s, 0.2s, 4deg);
+    top: 1rem;
+    left: -1rem;
+    width: clamp(50px, 6vw, 70px);
+    height: auto;
+
+    .pearl-string {
+      fill: none;
+      stroke: var(--pearl);
+      stroke-width: 1.5;
+      opacity: 0.6;
+    }
+    .pearl {
+      fill: var(--pearl);
+      stroke: #fff;
+      stroke-width: 0.5;
+      filter: drop-shadow(0 1px 2px rgba(212, 175, 55, 0.4));
+    }
+  }
+
+  .ornament-diamonds {
+    @include ornament(7.5s, 0.4s, -12deg);
+    bottom: 0.5rem;
+    right: -1rem;
+    width: clamp(90px, 10vw, 130px);
+    height: auto;
+
+    .diamond {
+      fill: rgba(255, 255, 255, 0.55);
+      stroke: var(--warm-gold);
+      stroke-width: 1.2;
+    }
+    .diamond-shine {
+      fill: rgba(255, 255, 255, 0.85);
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    .ornament-pearls { width: 40px; }
+    .ornament-diamonds { width: 70px; }
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
 
   .heart-timeline-wrap {
     position: relative;

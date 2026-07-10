@@ -3,6 +3,42 @@
 .wishes-section {
   padding: 5rem 0;
   background: transparent;
+  position: relative;
+  overflow: hidden; // ornaments bleed slightly past the edge by design
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .ornament-love-letter {
+    @include ornament(7.5s, 0.2s, -6deg);
+    top: -1rem;
+    right: -1.5rem;
+    width: clamp(100px, 12vw, 150px);
+    height: auto;
+
+    .letter-body { fill: var(--ivory); stroke: var(--rose-gold); stroke-width: 1.5; }
+    .letter-flap { fill: var(--pearl); stroke: var(--rose-gold); stroke-width: 1; }
+    .wax-seal { fill: var(--primary); stroke: var(--warm-gold); stroke-width: 1; }
+    .wax-monogram { fill: var(--ivory); font-family: 'Playfair Display', serif; font-size: 11px; }
+  }
+
+  .ornament-vine {
+    @include ornament(10s, 0.4s, 3deg);
+    bottom: -1rem;
+    left: -1rem;
+    width: clamp(50px, 6vw, 70px);
+    height: auto;
+
+    .vine-stem { fill: none; stroke: #7a9b6e; stroke-width: 2; opacity: 0.75; }
+    .vine-leaf { fill: #7a9b6e; opacity: 0.8; }
+  }
+
+  @media (max-width: 767.98px) {
+    .ornament-love-letter { width: 70px; }
+    .ornament-vine { width: 36px; }
+  }
 
   .wish-form {
     @include glass(var(--card-bg), 6px);

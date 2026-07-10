@@ -143,7 +143,12 @@
     letter-spacing: 3px;
     color: var(--accent);
     opacity: 0.95;
-    margin-bottom: 1.8rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .hero-countdown {
+    display: block;
+    margin-bottom: 1.6rem;
   }
 
   .btn-invite {
@@ -231,7 +236,8 @@
     .hero-invited { font-size: clamp(2.2rem, 10vw, 3.2rem); margin-bottom: 0.15rem; }
     .hero-subtitle { font-size: 0.7rem; letter-spacing: 3px; margin-bottom: 0.8rem; }
     .hero-names { font-size: clamp(1.2rem, 5.5vw, 1.7rem); margin-bottom: 0.35rem; }
-    .hero-date { font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 1rem; }
+    .hero-date { font-size: 0.85rem; letter-spacing: 2px; margin-bottom: 0.9rem; }
+    .hero-countdown { margin-bottom: 1rem; }
     .btn-invite { padding: 0.65rem 1.6rem; font-size: 0.75rem; }
 
     .scroll-cue { display: none; } // would overlap the card at the bottom
@@ -245,6 +251,7 @@
     .hero-invited { font-size: clamp(1.6rem, 9vw, 2.2rem); }
     .hero-names { font-size: 1.1rem; }
     .hero-content { padding: 0.8rem 1rem; }
+    .hero-countdown { display: none; } // reclaim vertical space on short landscape screens
   }
 }
 

@@ -8,7 +8,8 @@
   --pearl: #F0EAE2;
   --royal-purple: #4B2E58;
   --warm-gold: #D4AF37;
-  --ivory: #FFFFF2;
+  --ivory: #FFFDF8;
+  --blush: #FDF4F5;
   --glass-white: rgba(255, 255, 255, 0.14);
 }
 
@@ -31,4 +32,29 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+// Shared treatment for the large decorative "floating sculpture" objects
+// (roses, pearls, doves, ribbons, etc.) placed around section edges: soft
+// shadow for depth, a slight perspective tilt, and a gentle continuous float
+// so they read as suspended objects rather than flat stickers.
+@mixin ornament($duration: 7s, $delay: 0s, $tilt: -6deg) {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  filter: drop-shadow(0 16px 22px rgba(61, 12, 31, 0.16));
+  --ornament-tilt: #{$tilt};
+  animation: ornament-float #{$duration} ease-in-out infinite;
+  animation-delay: $delay;
+}
+
+@keyframes ornament-float {
+  0%, 100% { transform: perspective(600px) translateY(0) rotateZ(var(--ornament-tilt, 0deg)); }
+  50% { transform: perspective(600px) translateY(-16px) rotateZ(calc(var(--ornament-tilt, 0deg) + 4deg)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [class*="ornament-"] {
+    animation: none !important;
+  }
 }

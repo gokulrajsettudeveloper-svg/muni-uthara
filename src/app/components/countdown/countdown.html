@@ -1,35 +1,22 @@
-<section class="countdown-section" id="countdown">
-  @if (!isConstrainedDevice()) {
-    @defer (on viewport) {
-      <app-countdown-scene></app-countdown-scene>
-    } @placeholder {
-      <span></span>
-    }
-  }
-  <app-particle-field class="countdown-stars" preset="stars" density="low"></app-particle-field>
+<div class="countdown-widget" role="status" [attr.aria-live]="isPast() ? 'polite' : null">
+  <p class="countdown-label">{{ isPast() ? "We're Married!" : 'Counting Down To Forever' }}</p>
 
-  <div class="container text-center">
-    <h2 class="section-title" role="status" [attr.aria-live]="isPast() ? 'polite' : null">
-      {{ isPast() ? "We're Married!" : 'Counting Down To Forever' }}
-    </h2>
-
-    <div class="countdown-grid">
-      <div class="countdown-card">
-        <span class="value" #daysEl>{{ days() }}</span>
-        <span class="label">Days</span>
-      </div>
-      <div class="countdown-card">
-        <span class="value" #hoursEl>{{ hours() }}</span>
-        <span class="label">Hours</span>
-      </div>
-      <div class="countdown-card">
-        <span class="value" #minutesEl>{{ minutes() }}</span>
-        <span class="label">Minutes</span>
-      </div>
-      <div class="countdown-card">
-        <span class="value" #secondsEl>{{ seconds() }}</span>
-        <span class="label">Seconds</span>
-      </div>
+  <div class="countdown-grid">
+    <div class="countdown-card">
+      <span class="value" #daysEl>{{ days() }}</span>
+      <span class="label">Days</span>
+    </div>
+    <div class="countdown-card">
+      <span class="value" #hoursEl>{{ hours() }}</span>
+      <span class="label">Hours</span>
+    </div>
+    <div class="countdown-card">
+      <span class="value" #minutesEl>{{ minutes() }}</span>
+      <span class="label">Minutes</span>
+    </div>
+    <div class="countdown-card">
+      <span class="value" #secondsEl>{{ seconds() }}</span>
+      <span class="label">Seconds</span>
     </div>
   </div>
-</section>
+</div>

@@ -1,7 +1,60 @@
+@import "effects";
+
 .gallery-section {
   padding: 5rem 0;
   background: transparent;
   position: relative;
+  overflow: hidden; // ornaments bleed slightly past the edge by design
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .ornament-heart-frame {
+    @include ornament(8.5s, 0.1s, 6deg);
+    top: -1.5rem;
+    left: -1.5rem;
+    width: clamp(90px, 10vw, 130px);
+    height: auto;
+
+    .heart-frame-outer {
+      fill: none;
+      stroke: var(--warm-gold);
+      stroke-width: 3;
+    }
+    .heart-frame-inner {
+      fill: none;
+      stroke: var(--rose-gold);
+      stroke-width: 1.5;
+      opacity: 0.7;
+    }
+  }
+
+  .ornament-butterfly {
+    @include ornament(6s, 0.5s, -14deg);
+    bottom: 0.5rem;
+    right: -1.5rem;
+    width: clamp(100px, 11vw, 140px);
+    height: auto;
+
+    .wing {
+      fill: var(--rose-gold);
+      opacity: 0.75;
+      stroke: var(--primary);
+      stroke-width: 0.5;
+    }
+    .butterfly-body {
+      stroke: var(--dark);
+      stroke-width: 2;
+      stroke-linecap: round;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    .ornament-heart-frame { width: 64px; }
+    .ornament-butterfly { width: 76px; }
+  }
 
   .section-title {
     font-family: 'Playfair Display', serif;

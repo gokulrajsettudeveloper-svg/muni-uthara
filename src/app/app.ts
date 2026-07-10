@@ -9,14 +9,13 @@ import { Hero } from './components/hero/hero';
 import { CoupleSection } from './components/couple/couple';
 import { Story } from './components/story/story';
 import { Parents } from './components/parents/parents';
-import { InvitationCard } from  './components/invitation-card/invitation-card';
-import { Countdown } from './components/countdown/countdown';
+import { InvitationCard } from './components/invitation-card/invitation-card';
 import { Events } from './components/events/events';
 import { VenueSection } from './components/venue/venue';
 import { Gallery } from './components/gallery/gallery';
 import { GuestWishes } from './components/guest-wishes/guest-wishes';
 import { Rsvp } from './components/Rsvp/Rsvp';
-import { MusicPlayer } from  './components/music-player/music-player';
+import { MusicPlayer } from './components/music-player/music-player';
 import { Share } from './components/share/share';
 import { QrCode } from './components/qr-code/qr-code';
 import { FriendshipTribute } from './components/friendship-tribute/friendship-tribute';
@@ -34,12 +33,11 @@ import { Footer } from './components/footer/footer';
     Story,
     Parents,
     InvitationCard,
-    Countdown,
     Events,
     VenueSection,
+    Rsvp,
     Gallery,
     GuestWishes,
-    Rsvp,
     MusicPlayer,
     Share,
     QrCode,

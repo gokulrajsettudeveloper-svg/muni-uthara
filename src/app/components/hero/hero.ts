@@ -7,11 +7,12 @@ import { ParticleField } from '../../core/particle-field/particle-field';
 import { Tilt3dDirective } from '../../core/tilt3d.directive';
 import { RevealDirective } from '../../core/reveal.directive';
 import { HeroScene } from './hero-scene/hero-scene';
+import { Countdown } from '../countdown/countdown';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [DatePipe, ParticleField, Tilt3dDirective, RevealDirective, HeroScene],
+  imports: [DatePipe, ParticleField, Tilt3dDirective, RevealDirective, HeroScene, Countdown],
   templateUrl: './hero.html',
   styleUrl: './hero.scss'
 })

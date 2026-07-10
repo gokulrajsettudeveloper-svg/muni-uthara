@@ -4,6 +4,7 @@
   padding: 5rem 0;
   background: transparent; // let the floral backdrop show through
   position: relative;
+  overflow: hidden; // ornaments bleed slightly past the edge by design
 
   .rsvp-hearts {
     position: absolute;
@@ -15,6 +16,43 @@
   .container {
     position: relative;
     z-index: 1;
+  }
+
+  .ornament-cupid-arrow {
+    @include ornament(8s, 0.3s, -10deg);
+    top: 0.5rem;
+    left: -2rem;
+    width: clamp(120px, 14vw, 180px);
+    height: auto;
+
+    .arrow-shaft { stroke: var(--warm-gold); stroke-width: 2.5; }
+    .arrow-head, .arrow-fletch-a, .arrow-fletch-b { fill: var(--warm-gold); }
+    .arrow-heart { fill: var(--primary); opacity: 0.85; }
+  }
+
+  .ornament-glass-heart {
+    @include ornament(7s, 0.6s, 8deg);
+    bottom: -0.5rem;
+    right: -1.5rem;
+    width: clamp(90px, 10vw, 130px);
+    height: auto;
+
+    .glass-heart-shape {
+      fill: rgba(255, 255, 255, 0.35);
+      stroke: var(--rose-gold);
+      stroke-width: 1.5;
+    }
+    .glass-heart-shine {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.9);
+      stroke-width: 3;
+      stroke-linecap: round;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    .ornament-cupid-arrow { width: 90px; }
+    .ornament-glass-heart { width: 64px; }
   }
 
   .section-subtitle {

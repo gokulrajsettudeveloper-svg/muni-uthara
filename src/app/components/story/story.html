@@ -1,6 +1,24 @@
 <section class="story-section" id="story">
+  <!-- Pearl string + diamond ornaments, corner-anchored -->
+  <svg class="ornament ornament-pearls" viewBox="0 0 60 220" aria-hidden="true">
+    <path class="pearl-string" d="M30,0 C10,40 50,80 30,120 C10,160 50,190 30,220" />
+    <circle class="pearl" cx="30" cy="14" r="7" />
+    <circle class="pearl" cx="38" cy="48" r="6" />
+    <circle class="pearl" cx="24" cy="82" r="7" />
+    <circle class="pearl" cx="36" cy="116" r="6" />
+    <circle class="pearl" cx="22" cy="150" r="7" />
+    <circle class="pearl" cx="34" cy="184" r="6" />
+    <circle class="pearl" cx="28" cy="214" r="7" />
+  </svg>
+
+  <svg class="ornament ornament-diamonds" viewBox="0 0 140 140" aria-hidden="true">
+    <path class="diamond diamond-a" d="M40,10 L60,30 L40,70 L20,30 Z" />
+    <path class="diamond-shine diamond-a-shine" d="M40,10 L60,30 L40,34 Z" />
+    <path class="diamond diamond-b" d="M95,50 L110,64 L95,92 L80,64 Z" />
+  </svg>
+
   <div class="container">
-    <h2 class="section-title text-center d-block" appReveal="fade">Our Story</h2>
+    <h2 class="section-title text-center d-block" appReveal="fade">Our Timeline</h2>
 
     <div class="heart-timeline-wrap" #svgWrap>
       <app-particle-field #particleField class="story-particles" preset="sparkles" density="low"></app-particle-field>

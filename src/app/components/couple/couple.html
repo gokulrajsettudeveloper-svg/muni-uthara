@@ -1,8 +1,28 @@
 <section class="couple-section" id="couple">
   <app-particle-field class="couple-petals" preset="petals" density="low"></app-particle-field>
 
+  <!-- Luxury rose + petal-cluster ornaments, corner-anchored so they never sit behind the text -->
+  <svg class="ornament ornament-rose" viewBox="0 0 120 120" aria-hidden="true">
+    <g transform="translate(60,60)">
+      <path class="rose-petal" transform="rotate(0)" d="M0,0 C-18,-14 -14,-38 0,-48 C14,-38 18,-14 0,0 Z" />
+      <path class="rose-petal" transform="rotate(72)" d="M0,0 C-18,-14 -14,-38 0,-48 C14,-38 18,-14 0,0 Z" />
+      <path class="rose-petal" transform="rotate(144)" d="M0,0 C-18,-14 -14,-38 0,-48 C14,-38 18,-14 0,0 Z" />
+      <path class="rose-petal" transform="rotate(216)" d="M0,0 C-18,-14 -14,-38 0,-48 C14,-38 18,-14 0,0 Z" />
+      <path class="rose-petal" transform="rotate(288)" d="M0,0 C-18,-14 -14,-38 0,-48 C14,-38 18,-14 0,0 Z" />
+      <circle class="rose-center" r="11" />
+    </g>
+    <path class="rose-leaf" d="M60,100 C40,95 30,80 38,68 C50,72 60,84 60,100 Z" />
+    <path class="rose-leaf" d="M60,100 C80,95 90,80 82,68 C70,72 60,84 60,100 Z" />
+  </svg>
+
+  <svg class="ornament ornament-petal-cluster" viewBox="0 0 100 100" aria-hidden="true">
+    <ellipse class="petal-a" cx="30" cy="60" rx="16" ry="10" transform="rotate(-30 30 60)" />
+    <ellipse class="petal-b" cx="55" cy="75" rx="13" ry="8" transform="rotate(20 55 75)" />
+    <ellipse class="petal-c" cx="45" cy="40" rx="11" ry="7" transform="rotate(-10 45 40)" />
+  </svg>
+
   <div class="container">
-    <h2 class="section-title text-center" appReveal="fade">The Happy Couple</h2>
+    <h2 class="section-title text-center" appReveal="fade">Our Story</h2>
     <p class="section-subtitle text-center" appReveal="fade" [revealDelay]="0.1">{{ couple.hashtag }}</p>
 
     <div class="row justify-content-center g-4 mt-4">

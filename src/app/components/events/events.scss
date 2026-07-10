@@ -3,6 +3,47 @@
 .events-section {
   padding: 5rem 0;
   background: transparent;
+  position: relative;
+  overflow: hidden; // ornaments bleed slightly past the edge by design
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .ornament-giftbox {
+    @include ornament(7s, 0.2s, -5deg);
+    top: -1rem;
+    right: -1.5rem;
+    width: clamp(90px, 10vw, 130px);
+    height: auto;
+
+    .box-body { fill: var(--royal-purple); opacity: 0.9; }
+    .box-lid { fill: var(--warm-gold); }
+    .box-ribbon-v { fill: var(--primary); }
+    .box-bow { fill: var(--primary); stroke: var(--rose-gold); stroke-width: 0.5; }
+  }
+
+  .ornament-ribbon {
+    @include ornament(9s, 0.5s, 3deg);
+    bottom: 1rem;
+    left: -2rem;
+    width: clamp(120px, 14vw, 180px);
+    height: auto;
+
+    .ribbon-strip {
+      fill: none;
+      stroke: var(--rose-gold);
+      stroke-width: 6;
+      stroke-linecap: round;
+      opacity: 0.7;
+    }
+  }
+
+  @media (max-width: 767.98px) {
+    .ornament-giftbox { width: 64px; }
+    .ornament-ribbon { width: 90px; }
+  }
 
   .section-title {
     font-family: 'Playfair Display', serif;
@@ -89,4 +130,5 @@
       &:hover { color: var(--accent); }
     }
   }
+
 }
