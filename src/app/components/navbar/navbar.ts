@@ -22,7 +22,6 @@ export class Navbar implements OnInit, OnDestroy {
     { label: 'Couple', target: 'couple' },
     { label: 'Story', target: 'story' },
     { label: 'Events', target: 'events' },
-    { label: 'Gallery', target: 'gallery' },
     { label: 'RSVP', target: 'rsvp' }
   ];
 

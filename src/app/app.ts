@@ -12,7 +12,6 @@ import { Parents } from './components/parents/parents';
 import { InvitationCard } from './components/invitation-card/invitation-card';
 import { Events } from './components/events/events';
 import { VenueSection } from './components/venue/venue';
-import { Gallery } from './components/gallery/gallery';
 import { GuestWishes } from './components/guest-wishes/guest-wishes';
 import { Rsvp } from './components/Rsvp/Rsvp';
 import { MusicPlayer } from './components/music-player/music-player';
@@ -36,7 +35,6 @@ import { Footer } from './components/footer/footer';
     Events,
     VenueSection,
     Rsvp,
-    Gallery,
     GuestWishes,
     MusicPlayer,
     Share,
