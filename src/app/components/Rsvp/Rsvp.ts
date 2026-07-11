@@ -18,6 +18,7 @@ export class Rsvp implements AfterViewInit {
   readonly submitted = signal(false);
 
   @ViewChild('heartField') heartField?: ParticleField;
+  @ViewChild('fireworkField') fireworkField?: ParticleField;
   @ViewChild('checkPath') checkPathRef?: ElementRef<SVGPathElement>;
 
   private readonly motion = inject(MotionPreferenceService);
@@ -61,11 +62,29 @@ export class Rsvp implements AfterViewInit {
 
     this.heartField?.burstAt(0.5, 0.5, 18);
 
+    if (this.choice() === 'yes') {
+      this.launchFireworksShow();
+    }
+
     if (!path) return;
     if (this.motion.prefersReducedMotion()) {
       gsap.set(path, { strokeDashoffset: 0 });
     } else {
       gsap.to(path, { strokeDashoffset: 0, duration: 0.6, ease: 'power2.out', delay: 0.1 });
     }
+  }
+
+  /** A little celebratory fireworks show for an enthusiastic "Yes" — three staggered bursts, not one flat symmetric pop. */
+  private launchFireworksShow(): void {
+    if (this.motion.prefersReducedMotion()) return;
+
+    const bursts: Array<[number, number, number]> = [
+      [0.3, 0.4, 0],
+      [0.62, 0.32, 0.28],
+      [0.46, 0.55, 0.52],
+    ];
+    bursts.forEach(([x, y, delay]) => {
+      gsap.delayedCall(delay, () => this.fireworkField?.burstAt(x, y));
+    });
   }
 }

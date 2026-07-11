@@ -1,4 +1,6 @@
 <div class="countdown-widget" role="status" [attr.aria-live]="isPast() ? 'polite' : null">
+  <app-particle-field #fireworkField class="countdown-fireworks" preset="fireworks" density="low"></app-particle-field>
+
   <p class="countdown-label">{{ isPast() ? "We're Married!" : 'Counting Down To Forever' }}</p>
 
   <div class="countdown-grid">

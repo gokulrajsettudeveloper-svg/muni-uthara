@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild, effect, inject, signal } from '@angular/core';
 import gsap from 'gsap';
 import { MotionPreferenceService } from '../../core/motion-preference.service';
+import { ParticleField } from '../../core/particle-field/particle-field';
 
 /**
  * Compact countdown widget embedded directly inside the Hero section (no
@@ -10,6 +11,7 @@ import { MotionPreferenceService } from '../../core/motion-preference.service';
 @Component({
   selector: 'app-countdown',
   standalone: true,
+  imports: [ParticleField],
   templateUrl: './countdown.html',
   styleUrl: './countdown.scss'
 })
@@ -26,11 +28,13 @@ export class Countdown implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('hoursEl') hoursEl?: ElementRef<HTMLElement>;
   @ViewChild('minutesEl') minutesEl?: ElementRef<HTMLElement>;
   @ViewChild('secondsEl') secondsEl?: ElementRef<HTMLElement>;
+  @ViewChild('fireworkField') fireworkField?: ParticleField;
 
   private readonly motion = inject(MotionPreferenceService);
 
   private timerId?: ReturnType<typeof setInterval>;
   private viewReady = false;
+  private hasCelebrated = false;
 
   constructor() {
     // Flip/scale each digit card whenever its value changes — skipped until
@@ -86,6 +90,10 @@ export class Countdown implements OnInit, AfterViewInit, OnDestroy {
       this.hours.set('00');
       this.minutes.set('00');
       this.seconds.set('00');
+      if (!this.hasCelebrated) {
+        this.hasCelebrated = true;
+        this.launchFireworksShow();
+      }
       return;
     }
 
@@ -102,5 +110,19 @@ export class Countdown implements OnInit, AfterViewInit, OnDestroy {
 
   private pad(n: number): string {
     return n.toString().padStart(2, '0');
+  }
+
+  /** Fires once, the moment the countdown flips to "We're Married!" — three staggered bursts across the widget. */
+  private launchFireworksShow(): void {
+    if (this.motion.prefersReducedMotion()) return;
+
+    const bursts: Array<[number, number, number]> = [
+      [0.25, 0.4, 0],
+      [0.75, 0.35, 0.28],
+      [0.5, 0.55, 0.52],
+    ];
+    bursts.forEach(([x, y, delay]) => {
+      gsap.delayedCall(delay, () => this.fireworkField?.burstAt(x, y));
+    });
   }
 }

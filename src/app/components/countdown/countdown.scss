@@ -1,7 +1,17 @@
 @import "effects";
 
 .countdown-widget {
+  position: relative;
   text-align: center;
+
+  // Sits above the digit cards — the "We're Married!" burst should read as
+  // a celebratory overlay, not something peeking out from behind them.
+  .countdown-fireworks {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
 
   .countdown-label {
     font-family: 'Poppins', sans-serif;

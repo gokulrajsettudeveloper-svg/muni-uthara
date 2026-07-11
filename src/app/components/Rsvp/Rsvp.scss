@@ -18,6 +18,15 @@
     z-index: 1;
   }
 
+  // Sits above the cards/success message — the burst should read as a
+  // celebratory overlay, not something peeking out from behind the content.
+  .rsvp-fireworks {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+
   .ornament-cupid-arrow {
     @include ornament(8s, 0.3s, -10deg);
     top: 0.5rem;
