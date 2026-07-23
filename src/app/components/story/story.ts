@@ -24,11 +24,15 @@ interface PositionedMilestone {
   index: number;
   /** foreignObject x offset (relative to the orb) for the unfold card — clamped so the card never renders outside the viewBox, regardless of how narrow the container is. */
   cardOffsetX: number;
+  /** foreignObject y offset — below the orb by default, flipped above it when there's no room underneath (e.g. the milestone at the heart's bottom tip). */
+  cardOffsetY: number;
 }
 
 const VIEW_SIZE = 340;
 const CURVE_SCALE = 10;
 const CARD_WIDTH = 144;
+const CARD_HEIGHT = 72;
+const CARD_MARGIN = 16;
 const CARD_EDGE_PADDING = 6;
 
 /**
@@ -61,7 +65,13 @@ export class Story implements AfterViewInit, OnDestroy {
       const maxOffsetX = VIEW_SIZE - CARD_EDGE_PADDING - x - CARD_WIDTH;
       const cardOffsetX = Math.min(maxOffsetX, Math.max(minOffsetX, -CARD_WIDTH / 2));
 
-      return { milestone, x, y, index, cardOffsetX };
+      // Below the orb by default; flip above it when the card would spill
+      // past the bottom of the viewBox (the milestone at the heart's bottom
+      // tip) — otherwise the section's overflow clipping cuts the card off.
+      const spillsBottom = y + CARD_MARGIN + CARD_HEIGHT > VIEW_SIZE - CARD_EDGE_PADDING;
+      const cardOffsetY = spillsBottom ? -(CARD_MARGIN + CARD_HEIGHT) : CARD_MARGIN;
+
+      return { milestone, x, y, index, cardOffsetX, cardOffsetY };
     });
   }
   get milestones(): StoryMilestone[] {
@@ -146,7 +156,10 @@ export class Story implements AfterViewInit, OnDestroy {
   private heartPoint(t: number): { x: number; y: number } {
     const xMath = 16 * Math.pow(Math.sin(t), 3);
     const yMath = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t);
-    return { x: xMath * CURVE_SCALE + VIEW_SIZE / 2, y: -yMath * CURVE_SCALE + VIEW_SIZE / 2 + 10 };
+    // yMath spans roughly [-17, +12], so the curve's vertical midpoint is
+    // -2.5 — offset by VIEW_SIZE/2 - 25 to centre it, keeping the bottom
+    // tip (and its orb glow) inside the viewBox instead of hanging past it.
+    return { x: xMath * CURVE_SCALE + VIEW_SIZE / 2, y: -yMath * CURVE_SCALE + VIEW_SIZE / 2 - 25 };
   }
 
   private buildPathD(): string {

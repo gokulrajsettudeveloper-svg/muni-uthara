@@ -4,11 +4,12 @@ import { Couple, EventItem, Venue } from '../../models/wedding.model';
 import { ParticleField } from '../../core/particle-field/particle-field';
 import { RevealDirective } from '../../core/reveal.directive';
 import { MotionPreferenceService } from '../../core/motion-preference.service';
+import { InvitationScene } from './invitation-scene/invitation-scene';
 
 @Component({
   selector: 'app-invitation-card',
   standalone: true,
-  imports: [ParticleField, RevealDirective],
+  imports: [ParticleField, RevealDirective, InvitationScene],
   templateUrl: './invitation-card.html',
   styleUrl: './invitation-card.scss'
 })
@@ -28,6 +29,7 @@ export class InvitationCard implements OnInit, AfterViewInit, OnDestroy {
   isDownloading = false;
 
   private readonly motion = inject(MotionPreferenceService);
+  readonly isConstrainedDevice = this.motion.isConstrainedDevice;
   private trigger?: ScrollTrigger;
 
   /** The currently selected event (everything on the card derives from this). */
@@ -75,6 +77,23 @@ export class InvitationCard implements OnInit, AfterViewInit, OnDestroy {
 
   venueAddress(): string {
     return this.event()?.address ?? this.venue?.address ?? '';
+  }
+
+  /** Weekday name for a display date like "25 Aug 2026" — empty if it can't be parsed. */
+  weekday(dateStr: string): string {
+    const parsed = new Date(dateStr);
+    return isNaN(parsed.getTime()) ? '' : parsed.toLocaleDateString('en-US', { weekday: 'long' });
+  }
+
+  /** Morning/Afternoon/Evening tag derived from the event's start time. */
+  period(timeStr: string): string {
+    const match = timeStr.match(/(\d{1,2})(?::\d{2})?\s*(AM|PM)/i);
+    if (!match) return '';
+    let hour = parseInt(match[1], 10) % 12;
+    if (match[2].toUpperCase() === 'PM') hour += 12;
+    if (hour < 12) return 'Morning';
+    if (hour < 17) return 'Afternoon';
+    return 'Evening';
   }
 
   async download(): Promise<void> {

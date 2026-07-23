@@ -3,6 +3,7 @@ import { DatePipe } from '@angular/common';
 import { SmoothScrollService } from './core/smooth-scroll.service';
 import { WeddingDataService } from './services/wedding-data.service';
 import { WeddingData } from './models/wedding.model';
+import { AmbientBackground } from './core/ambient-background/ambient-background';
 import { LoadingScreen } from './components/loading-screen/loading-screen';
 import { Navbar } from './components/navbar/navbar';
 import { Hero } from './components/hero/hero';
@@ -24,6 +25,7 @@ import { Footer } from './components/footer/footer';
   standalone: true,
   imports: [
     DatePipe,
+    AmbientBackground,
     LoadingScreen,
     Navbar,
     Hero,

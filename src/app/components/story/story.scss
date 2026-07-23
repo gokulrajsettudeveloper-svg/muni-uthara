@@ -149,6 +149,13 @@
       }
     }
 
+    // Cards flipped above their orb (heart's bottom tip) unfold from their
+    // bottom edge — the edge nearest the orb — instead of the top.
+    &.card-above .orb-card-inner {
+      transform: translateY(6px) scaleY(0.85);
+      transform-origin: bottom center;
+    }
+
     &:hover .orb-glow,
     &.active .orb-glow {
       opacity: 0.9;

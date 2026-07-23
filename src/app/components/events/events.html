@@ -1,4 +1,12 @@
 <section class="events-section" id="events">
+  @if (!isConstrainedDevice()) {
+    @defer (on viewport) {
+      <app-events-scene></app-events-scene>
+    } @placeholder {
+      <span></span>
+    }
+  }
+
   <!-- Luxury gift box + satin ribbon ornaments -->
   <svg class="ornament ornament-giftbox" viewBox="0 0 100 100" aria-hidden="true">
     <rect class="box-body" x="18" y="40" width="64" height="50" rx="3" />

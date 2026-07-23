@@ -35,16 +35,17 @@ section[id] {
   scroll-margin-top: 70px;
 }
 
-// Soft ivory → blush → champagne gradient backdrop for every section below
-// the Hero (which keeps its own full-bleed cinematic photo). A fixed layer
-// instead of `background-attachment: fixed`, since that isn't rendered on
-// most mobile browsers (iOS Safari / Android Chrome).
+// Soft romantic gradient backdrop for every section below the Hero (which
+// keeps its own full-bleed cinematic photo). The ambient WebGL background
+// scene (core/ambient-background) renders above this gradient and below all
+// content. A fixed layer instead of `background-attachment: fixed`, since
+// that isn't rendered on most mobile browsers (iOS Safari / Android Chrome).
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  z-index: -1;
-  background: linear-gradient(180deg, var(--bg) 0%, var(--blush) 45%, var(--champagne) 100%);
+  z-index: -2;
+  background: linear-gradient(180deg, #FFF8F6 0%, #FDECEF 50%, #FFE8EE 100%);
   pointer-events: none;
 }
 

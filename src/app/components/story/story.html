@@ -43,6 +43,7 @@
             #orbGroup
             class="story-orb"
             [class.active]="activeIndex() === point.index"
+            [class.card-above]="point.cardOffsetY < 0"
             [attr.transform]="'translate(' + point.x + ',' + point.y + ')'"
             (click)="selectMilestone(point.index)"
             (keydown.enter)="selectMilestone(point.index)"
@@ -59,7 +60,7 @@
               </div>
             </foreignObject>
 
-            <foreignObject class="orb-card" [attr.x]="point.cardOffsetX" y="16" width="144" height="72">
+            <foreignObject class="orb-card" [attr.x]="point.cardOffsetX" [attr.y]="point.cardOffsetY" width="144" height="72">
               <div class="orb-card-inner" xmlns="http://www.w3.org/1999/xhtml">
                 <strong>{{ point.milestone.title }}</strong>
                 <span>{{ point.milestone.date }}</span>

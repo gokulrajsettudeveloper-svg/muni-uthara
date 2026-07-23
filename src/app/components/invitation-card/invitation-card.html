@@ -1,4 +1,13 @@
 <section class="invitation-section" id="invitation">
+  @if (!isConstrainedDevice()) {
+    @defer (on viewport) {
+      <app-invitation-scene></app-invitation-scene>
+    } @placeholder {
+      <span></span>
+    }
+  }
+  <app-particle-field class="invitation-petals" preset="petals" density="low"></app-particle-field>
+
   <div class="container text-center">
     <h2 class="section-title" appReveal="fade">Digital Invitation</h2>
 
@@ -31,8 +40,15 @@
 
       <div class="card-wrap" [class.revealed]="revealed()">
         <div class="invitation-card" #cardRef>
+          <img class="corner-floral tl" src="assets/images/floral-corner.svg" alt="" aria-hidden="true" />
+          <img class="corner-floral br" src="assets/images/floral-corner.svg" alt="" aria-hidden="true" />
+
           <p class="eyebrow">Together with their families</p>
           <p class="family-line">{{ couple.families.groomFamily }} &amp; {{ couple.families.brideFamily }}</p>
+
+          <div class="flourish" aria-hidden="true">
+            <svg viewBox="0 0 120 12"><path class="line" d="M2 6 H44 M76 6 H118" /><path class="heart" d="M60 9.6 C56.6 7.4 54.6 5.5 54.6 3.9 C54.6 2.4 56 1.7 57.4 2.4 C58.5 3 60 4.4 60 4.4 C60 4.4 61.5 3 62.6 2.4 C64 1.7 65.4 2.4 65.4 3.9 C65.4 5.5 63.4 7.4 60 9.6 Z" /><circle class="dot" cx="49" cy="6" r="1.4" /><circle class="dot" cx="71" cy="6" r="1.4" /></svg>
+          </div>
 
           <h3 class="invite-names">
             {{ couple.groom.name }}<span class="amp">&amp;</span>{{ couple.bride.name }}
@@ -44,25 +60,34 @@
             <p class="invite-line">joyfully invite you to the</p>
             <p class="event-name">{{ name(ev) }}</p>
 
-            <div class="event-meta">
-              <span class="meta-item"><i class="bi bi-calendar-heart"></i> {{ ev.date }}</span>
-              <span class="meta-dot">•</span>
-              <span class="meta-item"><i class="bi bi-clock"></i> {{ ev.time }}</span>
+            <div class="detail-row">
+              <div class="detail-col">
+                <span class="detail-icon"><i class="bi bi-calendar-heart"></i></span>
+                <b>{{ ev.date }}</b>
+                @if (weekday(ev.date)) { <small>{{ weekday(ev.date) }}</small> }
+              </div>
+              <div class="detail-col">
+                <span class="detail-icon"><i class="bi bi-clock"></i></span>
+                <b>{{ ev.time }}</b>
+                @if (period(ev.time)) { <small>{{ period(ev.time) }}</small> }
+              </div>
+              <div class="detail-col">
+                <span class="detail-icon"><i class="bi bi-geo-alt-fill"></i></span>
+                <b class="detail-venue">{{ venueName() }}</b>
+              </div>
             </div>
 
             @if (ev.description) {
               <p class="invite-desc">{{ ev.description }}</p>
             }
 
-            <div class="divider small"><span></span></div>
-
             <p class="invite-venue">
-              <i class="bi bi-geo-alt-fill"></i>
-              <span class="venue-text">
-                <strong>{{ venueName() }}</strong>
-                <br />{{ venueAddress() }}
-              </span>
+              <span class="venue-text">{{ venueAddress() }}</span>
             </p>
+
+            <a class="maps-pill" [href]="venue.mapDirectionsUrl" target="_blank" rel="noopener">
+              <i class="bi bi-geo-alt"></i> Open in Google Maps
+            </a>
           }
         </div>
       </div>
@@ -72,5 +97,6 @@
       <i class="bi bi-download"></i>
       {{ isDownloading ? 'Preparing...' : 'Download as Image' }}
     </button>
+    <p class="download-caption"><i class="bi bi-heart-fill"></i> Save the memories forever <i class="bi bi-heart-fill"></i></p>
   </div>
 </section>
