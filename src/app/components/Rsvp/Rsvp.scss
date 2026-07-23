@@ -137,4 +137,36 @@
     color: var(--accent);
     font-style: italic;
   }
+
+  .whatsapp-rsvp {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.7rem 1.8rem;
+    border-radius: 50px;
+    background: #25D366;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    box-shadow: 0 10px 24px rgba(37, 211, 102, 0.35);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+    i { font-size: 1.05rem; }
+
+    &:hover {
+      transform: translateY(-2px);
+      color: #fff;
+      box-shadow: 0 14px 30px rgba(37, 211, 102, 0.45);
+    }
+  }
+
+  .whatsapp-hint {
+    margin: 0.45rem 0 0;
+    font-size: 0.72rem;
+    color: var(--text);
+    opacity: 0.55;
+  }
 }

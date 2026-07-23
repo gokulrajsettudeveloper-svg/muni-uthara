@@ -18,7 +18,7 @@
       "photo": "assets/images/groom.jpeg"
     },
     "hashtag": "#Muniprakash&Uthara2026",
-    "heroImage": "assets/images/hero.png",
+    "heroImage": "assets/images/hero.webp",
     "weddingDate": "2026-08-23T05:00:00",
     "families": {
       "brideFamily": "Mr. Ramesh & Mrs. Nirmala",
@@ -100,7 +100,8 @@
     "instagram": "https://instagram.com",
     "facebook": "https://facebook.com",
     "whatsapp": "https://wa.me/?text=",
-    "telegram": "https://t.me/share/url?url="
+    "telegram": "https://t.me/share/url?url=",
+    "rsvpWhatsAppNumber": ""
   },
   "tribute": {
     "friendName": "Gokulraj",

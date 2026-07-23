@@ -49,6 +49,13 @@
           <path #checkPath class="check-path" d="M16,31 L26,41 L45,20"></path>
         </svg>
         <p class="thank-you">Thank you for your response!</p>
+
+        @if (whatsappLink(); as link) {
+          <a class="whatsapp-rsvp" [href]="link" target="_blank" rel="noopener">
+            <i class="bi bi-whatsapp"></i> Send RSVP on WhatsApp
+          </a>
+          <p class="whatsapp-hint">Opens WhatsApp with your response ready to send</p>
+        }
       </div>
     }
   </div>

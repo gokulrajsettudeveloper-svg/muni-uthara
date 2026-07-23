@@ -43,9 +43,20 @@
                   }
                 </span>
               </p>
-              <a class="directions-link" [href]="directionsUrl(event)" target="_blank" rel="noopener">
-                <i class="bi bi-signpost-2-fill"></i> Get Directions
-              </a>
+              <div class="card-actions">
+                <a class="directions-link" [href]="directionsUrl(event)" target="_blank" rel="noopener">
+                  <i class="bi bi-signpost-2-fill"></i> Get Directions
+                </a>
+                <button type="button" class="calendar-link" (click)="addToCalendar(event)">
+                  <i class="bi bi-calendar-plus"></i> Add to Calendar
+                </button>
+              </div>
+            } @else {
+              <div class="card-actions">
+                <button type="button" class="calendar-link" (click)="addToCalendar(event)">
+                  <i class="bi bi-calendar-plus"></i> Add to Calendar
+                </button>
+              </div>
             }
           </div>
         </div>

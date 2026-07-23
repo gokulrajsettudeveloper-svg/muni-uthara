@@ -71,6 +71,8 @@ export interface WeddingData {
     facebook: string;
     whatsapp: string;
     telegram: string;
+    /** Couple's WhatsApp number in international format without "+" (e.g. "9198xxxxxx"). Empty hides the RSVP-via-WhatsApp button. */
+    rsvpWhatsAppNumber: string;
   };
   tribute: {
     friendName: string;

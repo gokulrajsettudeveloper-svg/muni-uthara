@@ -1,10 +1,16 @@
-import { AfterViewInit, Component, ElementRef, ViewChild, effect, inject, signal } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, ViewChild, computed, effect, inject, signal } from '@angular/core';
 import gsap from 'gsap';
 import { ParticleField } from '../../core/particle-field/particle-field';
 import { RevealDirective } from '../../core/reveal.directive';
 import { MotionPreferenceService } from '../../core/motion-preference.service';
 
 type RsvpChoice = 'yes' | 'maybe' | 'no' | null;
+
+const WHATSAPP_MESSAGES: Record<Exclude<RsvpChoice, null>, string> = {
+  yes: "Hi! RSVP for Muniprakash & Uthara's wedding — we're joyfully attending! 🎉",
+  maybe: "Hi! RSVP for Muniprakash & Uthara's wedding — we're not sure yet, we'll confirm soon.",
+  no: "Hi! RSVP for Muniprakash & Uthara's wedding — sadly we can't make it, but sending all our love and blessings! ❤️",
+};
 
 @Component({
   selector: 'app-rsvp',
@@ -14,8 +20,22 @@ type RsvpChoice = 'yes' | 'maybe' | 'no' | null;
   styleUrl: './Rsvp.scss'
 })
 export class Rsvp implements AfterViewInit {
+  /** Couple's WhatsApp number (international format, digits only). Empty hides the send button. */
+  @Input() set whatsappNumber(value: string) {
+    this._whatsappNumber.set((value ?? '').replace(/[^\d]/g, ''));
+  }
+  private readonly _whatsappNumber = signal('');
+
   readonly choice = signal<RsvpChoice>(null);
   readonly submitted = signal(false);
+
+  /** Prefilled wa.me link for the current choice — null when no number is configured or nothing selected. */
+  readonly whatsappLink = computed<string | null>(() => {
+    const number = this._whatsappNumber();
+    const choice = this.choice();
+    if (!number || !choice) return null;
+    return `https://wa.me/${number}?text=${encodeURIComponent(WHATSAPP_MESSAGES[choice])}`;
+  });
 
   @ViewChild('heartField') heartField?: ParticleField;
   @ViewChild('fireworkField') fireworkField?: ParticleField;

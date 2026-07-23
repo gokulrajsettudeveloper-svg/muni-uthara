@@ -124,14 +124,27 @@
       strong { font-weight: 600; }
     }
 
-    .directions-link {
+    .card-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.1rem;
+      margin-top: 0.7rem;
+    }
+
+    .directions-link,
+    .calendar-link {
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      margin-top: 0.7rem;
       font-size: 0.78rem;
       font-weight: 600;
       color: var(--primary);
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      font-family: inherit;
       transition: color 0.25s ease;
 
       &:hover { color: var(--accent); }

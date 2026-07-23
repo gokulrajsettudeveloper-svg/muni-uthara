@@ -15,7 +15,7 @@
   overflow: hidden; // never let the large script names cause a horizontal scroll
   background:
     linear-gradient(160deg, rgba(255, 249, 243, 0.94), rgba(251, 228, 228, 0.94)),
-    url('/assets/images/floral-bg.png') center / cover no-repeat;
+    url('/assets/images/floral-bg.webp') center / cover no-repeat;
   animation: intro-fade-in 0.6s ease;
   transition: opacity 0.6s ease;
 
