@@ -24,7 +24,7 @@
       fill: var(--pearl);
       stroke: #fff;
       stroke-width: 0.5;
-      filter: drop-shadow(0 1px 2px rgba(212, 175, 55, 0.4));
+      filter: drop-shadow(0 1px 2px rgba(201, 168, 106, 0.4));
     }
   }
 
@@ -59,6 +59,27 @@
     position: relative;
     max-width: 480px;
     margin: 2rem auto 0;
+
+    // Soft champagne halo behind the heart so it reads as a luminous
+    // centrepiece rather than a thin line floating in empty space.
+    &::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 52%;
+      width: 78%;
+      aspect-ratio: 1;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(
+        circle,
+        rgba(201, 168, 106, 0.22) 0%,
+        rgba(216, 164, 127, 0.12) 38%,
+        rgba(253, 236, 239, 0) 70%
+      );
+      filter: blur(6px);
+      pointer-events: none;
+      z-index: 0;
+    }
   }
 
   .story-particles {
@@ -80,16 +101,18 @@
   .stop-a { stop-color: var(--warm-gold); }
   .stop-b { stop-color: var(--primary); }
   .stop-c { stop-color: var(--rose-gold); }
-  .glow-a { stop-color: rgba(214, 83, 109, 0.55); }
-  .glow-b { stop-color: rgba(214, 83, 109, 0); }
+  .glow-a { stop-color: rgba(138, 35, 70, 0.55); }
+  .glow-b { stop-color: rgba(138, 35, 70, 0); }
 
   .heart-line {
     fill: none;
     stroke: url(#heartLineGradient);
-    stroke-width: 2.5;
+    stroke-width: 3.4;
     stroke-linecap: round;
     stroke-linejoin: round;
-    filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.4));
+    filter:
+      drop-shadow(0 0 3px rgba(201, 168, 106, 0.7))
+      drop-shadow(0 0 9px rgba(138, 35, 70, 0.28));
   }
 
   .story-orb {
@@ -98,14 +121,20 @@
 
     .orb-glow {
       fill: url(#orbGlowGradient);
-      opacity: 0.55;
+      opacity: 0.6;
+      transform-box: fill-box;
+      transform-origin: center;
       transition: opacity 0.3s ease;
+      // gentle continuous breathe so every memory point reads as "alive"
+      // even before it is scrolled into focus.
+      animation: orb-breathe 3.6s ease-in-out infinite;
     }
 
     .orb-core {
       fill: var(--primary);
       stroke: var(--ivory);
       stroke-width: 2;
+      filter: drop-shadow(0 2px 4px rgba(92, 23, 48, 0.4));
       transition: fill 0.3s ease;
     }
 
@@ -116,7 +145,7 @@
       align-items: center;
       justify-content: center;
       color: #fff;
-      font-size: 0.7rem;
+      font-size: 0.78rem;
     }
 
     .orb-card {
@@ -138,7 +167,7 @@
       transition: opacity 0.35s ease, transform 0.35s ease;
 
       strong {
-        font-family: 'Playfair Display', serif;
+        font-family: 'Cormorant Garamond', 'Playfair Display', serif;
         font-size: 0.78rem;
         color: var(--text);
       }
@@ -156,9 +185,24 @@
       transform-origin: bottom center;
     }
 
-    &:hover .orb-glow,
-    &.active .orb-glow {
+    // Stagger the breathe so the four memories shimmer out of sync.
+    &:nth-of-type(2) .orb-glow { animation-delay: 0.9s; }
+    &:nth-of-type(3) .orb-glow { animation-delay: 1.8s; }
+    &:nth-of-type(4) .orb-glow { animation-delay: 2.7s; }
+
+    &:hover .orb-glow {
       opacity: 0.9;
+      animation-play-state: paused;
+    }
+
+    // The focused memory glows brighter and beats like a heart.
+    &.active .orb-glow {
+      opacity: 1;
+      animation: orb-heartbeat 1.6s ease-in-out infinite;
+    }
+
+    &.active .orb-core {
+      fill: var(--warm-gold);
     }
 
     &.active .orb-card-inner {
@@ -169,6 +213,25 @@
     &:focus-visible .orb-core {
       fill: var(--warm-gold);
     }
+  }
+}
+
+@keyframes orb-breathe {
+  0%, 100% { transform: scale(0.9); opacity: 0.5; }
+  50% { transform: scale(1.08); opacity: 0.75; }
+}
+
+@keyframes orb-heartbeat {
+  0%, 100% { transform: scale(1); opacity: 0.85; }
+  30% { transform: scale(1.22); opacity: 1; }
+  45% { transform: scale(1.05); opacity: 0.92; }
+  60% { transform: scale(1.18); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-section .story-orb .orb-glow {
+    animation: none !important;
+    opacity: 0.6;
   }
 }
 

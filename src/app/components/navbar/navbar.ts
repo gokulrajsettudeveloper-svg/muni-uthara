@@ -4,6 +4,8 @@ import { SmoothScrollService } from '../../core/smooth-scroll.service';
 interface NavLink {
   label: string;
   target: string;
+  /** Rendered as a filled call-to-action pill instead of a plain link. */
+  cta?: boolean;
 }
 
 @Component({
@@ -17,12 +19,16 @@ export class Navbar implements OnInit, OnDestroy {
   /** Hides the glass navbar on scroll-down past the hero, reveals it on scroll-up. */
   readonly hidden = signal(false);
 
+  // Labels intentionally mirror the section headings they scroll to, so a
+  // guest tapping "Timeline" lands on a section actually titled "Our Timeline".
   readonly links: NavLink[] = [
     { label: 'Home', target: 'hero' },
-    { label: 'Couple', target: 'couple' },
-    { label: 'Story', target: 'story' },
+    { label: 'Our Story', target: 'couple' },
+    { label: 'Timeline', target: 'story' },
+    { label: 'Invitation', target: 'invitation' },
     { label: 'Events', target: 'events' },
-    { label: 'RSVP', target: 'rsvp' }
+    { label: 'Venue', target: 'venue' },
+    { label: 'RSVP', target: 'rsvp', cta: true }
   ];
 
   private readonly ngZone = inject(NgZone);
@@ -46,7 +52,10 @@ export class Navbar implements OnInit, OnDestroy {
     this.isOpen.set(!this.isOpen());
   }
 
-  scrollTo(target: string): void {
+  /** Anchors keep a real href for keyboard/screen-reader access; we intercept
+   *  activation so Lenis drives the scroll instead of a native jump. */
+  scrollTo(event: Event, target: string): void {
+    event.preventDefault();
     this.smoothScroll.scrollToEl(target);
     this.isOpen.set(false);
   }

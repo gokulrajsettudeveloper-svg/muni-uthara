@@ -33,7 +33,7 @@
 
   .intro-monogram {
     display: block;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
     font-size: 1.9rem;
     letter-spacing: 5px;
     margin-bottom: 1.4rem;
@@ -79,10 +79,10 @@
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     animation: intro-pulse 2.2s ease-in-out infinite;
-    @include glow(24px, rgba(212, 175, 55, 0.5));
+    @include glow(24px, rgba(201, 168, 106, 0.5));
 
     i { margin-right: 0.5rem; }
-    &:hover { transform: translateY(-3px); @include glow(32px, rgba(212, 175, 55, 0.65)); }
+    &:hover { transform: translateY(-3px); @include glow(32px, rgba(201, 168, 106, 0.65)); }
   }
 
   .intro-music {

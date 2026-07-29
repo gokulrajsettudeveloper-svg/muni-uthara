@@ -1,15 +1,14 @@
 <section class="hero" id="hero">
-  <!-- Full-bleed couple photo behind the whole poster -->
-  <img class="hero-photo" [src]="couple.heroImage"
+  <!-- Desktop: full-bleed temple backdrop + the couple composited on the left
+       via a live CSS layer (keeps the couple crisp and independently placed). -->
+  <img class="hero-photo hero-photo--desktop" [src]="couple.heroImage" alt="" aria-hidden="true" />
+  <img class="hero-couple" src="assets/images/couple-cutout.webp"
        alt="{{ couple.groom.name.split(' ')[0] }} &amp; {{ couple.bride.name.split(' ')[0] }}" />
 
-  @if (!isConstrainedDevice()) {
-    @defer (on viewport) {
-      <app-hero-scene></app-hero-scene>
-    } @placeholder {
-      <span></span>
-    }
-  }
+  <!-- Mobile: a pre-baked couple-over-temple composite, since the mobile hero
+       stacks the photo above the card and a CSS overlay can't sit over it. -->
+  <img class="hero-photo hero-photo--mobile" src="assets/images/hero-mobile.webp"
+       alt="{{ couple.groom.name.split(' ')[0] }} &amp; {{ couple.bride.name.split(' ')[0] }}" />
 
   <app-particle-field class="hero-fireflies" preset="fireflies" density="low"></app-particle-field>
   <app-particle-field class="hero-petals" preset="petals" density="low"></app-particle-field>

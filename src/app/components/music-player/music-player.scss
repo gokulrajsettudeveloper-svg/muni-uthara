@@ -1,171 +1,148 @@
-.music-player {
+// Floating glassmorphism music player, top-right — song title + artist and
+// minimal transport controls. Fixed just below the navbar so it stays clear
+// of the nav row while remaining visible as the guest scrolls.
+.hero-music {
   position: fixed;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  z-index: 1040;
+  top: 4.7rem;
+  right: 1rem;
+  z-index: 1035;
+  width: min(84vw, 264px);
+  padding: 0.85rem 1rem 0.75rem;
+  border-radius: 22px;
+  color: #fff;
+
+  // rose-tinted frosted glass with a champagne-gold rim
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 55%),
+    linear-gradient(135deg, rgba(138, 35, 70, 0.62), rgba(168, 59, 92, 0.5));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(216, 164, 127, 0.55);
+  box-shadow: 0 18px 45px rgba(92, 23, 48, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.hm-top {
   display: flex;
   align-items: center;
   gap: 0.7rem;
+  margin-bottom: 0.7rem;
+}
 
-  // "🎵 Tap to Enable Music" — an elegant floating pill shown until the
-  // visitor turns the sound on.
-  .music-enable {
+.hm-icon {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: #fff;
+  background: linear-gradient(140deg, var(--rose-gold), var(--primary));
+  box-shadow: 0 4px 12px rgba(92, 23, 48, 0.4);
+}
+
+.hm-meta {
+  flex: 1;
+  min-width: 0;
+
+  .hm-title {
+    margin: 0;
+    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.15;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .hm-artist {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.3px;
+    color: rgba(255, 255, 255, 0.72);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.hm-list {
+  flex-shrink: 0;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.hm-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.3rem;
+
+  .hm-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
-    border: none;
-    background: rgba(255, 250, 250, 0.92);
-    color: var(--primary);
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.8rem;
-    letter-spacing: 0.3px;
-    padding: 0.6rem 1.1rem;
-    border-radius: 50px;
-    box-shadow: 0 10px 28px rgba(61, 12, 31, 0.22);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    cursor: pointer;
-    white-space: nowrap;
-    animation: enable-pulse 2.2s ease-in-out infinite;
-
-    i { font-size: 0.95rem; }
-
-    &:hover { background: #fff; }
-  }
-
-  // Always-visible ON/OFF toggle — a floating vinyl disc with a tonearm and
-  // a small equalizer that comes alive while playing.
-  .music-toggle {
-    position: relative;
-    width: 56px;
-    height: 56px;
-    flex-shrink: 0;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    background: rgba(61, 12, 31, 0.55);
-    box-shadow: 0 8px 24px rgba(61, 12, 31, 0.35);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    display: flex;
-    align-items: center;
     justify-content: center;
-    overflow: visible;
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
 
-    &:hover { transform: translateY(-2px); }
-
-    .vinyl {
-      position: relative;
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background:
-        repeating-radial-gradient(circle at center, #1a1015 0 2px, #2b1a20 2px 4px);
-      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: transform 0.4s ease;
+    &:hover {
+      background: rgba(255, 255, 255, 0.16);
+      transform: translateY(-1px);
     }
 
-    .vinyl-label {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: var(--warm-gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    // the primary play/pause — a bright disc, like the reference
+    &.play {
+      width: 44px;
+      height: 44px;
+      font-size: 1.25rem;
+      color: var(--primary);
+      background: radial-gradient(circle at 35% 30%, #fff, #ffe9ef);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22);
 
-      i { font-size: 0.5rem; color: var(--dark); }
-    }
-
-    .tonearm {
-      position: absolute;
-      top: -6px;
-      right: -8px;
-      width: 22px;
-      height: 3px;
-      border-radius: 2px;
-      background: var(--pearl);
-      transform-origin: 100% 50%;
-      transform: rotate(28deg);
-      transition: transform 0.4s ease;
-      box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
-    }
-
-    .equalizer {
-      position: absolute;
-      bottom: 6px;
-      right: 6px;
-      display: flex;
-      align-items: flex-end;
-      gap: 2px;
-      height: 10px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-
-      span {
-        width: 2px;
-        height: 3px;
-        background: var(--warm-gold);
-        border-radius: 1px;
-      }
-    }
-
-    // playing: rose accent + spinning disc + tonearm resting on the record
-    &.on {
-      background: var(--primary);
-      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.45);
-
-      .vinyl {
-        animation: spin-record 3s linear infinite;
-      }
-
-      .tonearm {
-        transform: rotate(8deg);
-      }
-
-      .equalizer {
-        opacity: 1;
-
-        span:nth-child(1) { animation: eq-bounce 0.8s ease-in-out infinite; }
-        span:nth-child(2) { animation: eq-bounce 0.6s ease-in-out infinite 0.1s; }
-        span:nth-child(3) { animation: eq-bounce 0.9s ease-in-out infinite 0.05s; }
-        span:nth-child(4) { animation: eq-bounce 0.7s ease-in-out infinite 0.15s; }
+      &:hover {
+        transform: translateY(-2px) scale(1.04);
+        background: #fff;
       }
     }
   }
 }
 
-@media (max-width: 575.98px) {
-  .music-player {
-    bottom: 1rem;
-    right: 1rem;
+// Autoplay was blocked — gently pulse the play button so the guest knows to tap.
+.hero-music.needs-enable .hm-btn.play {
+  animation: hm-pulse 1.8s ease-in-out infinite;
+}
 
-    .music-enable { font-size: 0.72rem; padding: 0.5rem 0.9rem; }
-    .music-toggle { width: 48px; height: 48px; }
+@keyframes hm-pulse {
+  0%, 100% { box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22), 0 0 0 0 rgba(201, 168, 106, 0.55); }
+  50% { box-shadow: 0 6px 16px rgba(0, 0, 0, 0.22), 0 0 0 10px rgba(201, 168, 106, 0); }
+}
+
+// Compact on small phones: keep it tidy in the corner.
+@media (max-width: 480px) {
+  .hero-music {
+    top: 4.3rem;
+    right: 0.75rem;
+    width: min(74vw, 230px);
+    padding: 0.6rem 0.7rem;
   }
-}
-
-@keyframes spin-record {
-  to { transform: rotate(360deg); }
-}
-
-@keyframes enable-pulse {
-  0%, 100% { transform: scale(1); box-shadow: 0 10px 28px rgba(61, 12, 31, 0.22); }
-  50% { transform: scale(1.04); box-shadow: 0 12px 34px rgba(214, 83, 109, 0.4); }
-}
-
-@keyframes eq-bounce {
-  0%, 100% { height: 3px; }
-  50% { height: 10px; }
+  .hm-icon { width: 32px; height: 32px; font-size: 0.95rem; }
+  .hm-meta .hm-title { font-size: 1rem; }
+  .hm-meta .hm-artist { font-size: 0.66rem; }
+  .hm-list { display: none; }
+  .hm-controls .hm-btn { width: 30px; height: 30px; font-size: 0.9rem; }
+  .hm-controls .hm-btn.play { width: 38px; height: 38px; font-size: 1.05rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .music-toggle .vinyl,
-  .music-toggle .equalizer span {
-    animation: none !important;
-  }
+  .hero-music.needs-enable .hm-btn.play { animation: none; }
 }

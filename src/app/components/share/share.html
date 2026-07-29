@@ -5,26 +5,48 @@
       Spread the love &mdash; invite your friends and family
     </p>
 
-    <div class="share-buttons" appReveal="zoom" [revealDelay]="0.15">
-      <a [href]="whatsappLink" target="_blank" rel="noopener" class="share-btn whatsapp">
-        <i class="bi bi-whatsapp"></i>
-      </a>
-      <a [href]="facebookLink" target="_blank" rel="noopener" class="share-btn facebook">
-        <i class="bi bi-facebook"></i>
-      </a>
-      <a [href]="instagramLink" target="_blank" rel="noopener" class="share-btn instagram">
-        <i class="bi bi-instagram"></i>
-      </a>
-      <a [href]="telegramLink" target="_blank" rel="noopener" class="share-btn telegram">
-        <i class="bi bi-telegram"></i>
-      </a>
-      <button class="share-btn copy" (click)="copyLink()">
-        <i class="bi" [class.bi-link-45deg]="!copied()" [class.bi-check-lg]="copied()"></i>
-      </button>
-    </div>
+    <div class="share-columns">
+      <div class="share-col" appReveal="zoom" [revealDelay]="0.15">
+        <div class="share-buttons">
+          <a [href]="whatsappLink" target="_blank" rel="noopener" class="share-btn whatsapp" aria-label="Share on WhatsApp">
+            <i class="bi bi-whatsapp"></i>
+          </a>
+          <a [href]="facebookLink" target="_blank" rel="noopener" class="share-btn facebook" aria-label="Share on Facebook">
+            <i class="bi bi-facebook"></i>
+          </a>
+          <a [href]="instagramLink" target="_blank" rel="noopener" class="share-btn instagram" aria-label="Open Instagram">
+            <i class="bi bi-instagram"></i>
+          </a>
+          <a [href]="telegramLink" target="_blank" rel="noopener" class="share-btn telegram" aria-label="Share on Telegram">
+            <i class="bi bi-telegram"></i>
+          </a>
+          <button class="share-btn copy" (click)="copyLink()" aria-label="Copy link">
+            <i class="bi" [class.bi-link-45deg]="!copied()" [class.bi-check-lg]="copied()"></i>
+          </button>
+        </div>
+        @if (copied()) {
+          <p class="copied-msg">Link copied!</p>
+        }
+      </div>
 
-    @if (copied()) {
-      <p class="copied-msg" appReveal="fade">Link copied!</p>
-    }
+      <div class="share-col" appReveal="zoom" [revealDelay]="0.2">
+        <div class="qr-card">
+          @if (qrDataUrl()) {
+            <img [src]="qrDataUrl()" alt="Wedding invitation QR code">
+          } @else {
+            <div class="qr-placeholder"></div>
+          }
+        </div>
+        <p class="qr-caption">Scan to open the invitation</p>
+        <div class="qr-actions">
+          <button class="btn-qr" (click)="downloadQr()">
+            <i class="bi bi-download"></i> Download
+          </button>
+          <button class="btn-qr outline" (click)="printQr()">
+            <i class="bi bi-printer-fill"></i> Print
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

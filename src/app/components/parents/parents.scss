@@ -5,7 +5,7 @@
   background: transparent;
 
   .section-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
     color: var(--text);
     font-size: 2.2rem;
   }
@@ -25,7 +25,7 @@
 
     &:hover {
       transform: translateY(-8px);
-      @include glow(24px, rgba(212, 175, 55, 0.3));
+      @include glow(24px, rgba(201, 168, 106, 0.3));
     }
 
     .parents-side {
@@ -38,14 +38,14 @@
     }
 
     h3 {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Cormorant Garamond', 'Playfair Display', serif;
       color: var(--text);
       margin: 0;
       font-size: 1.3rem;
     }
 
     .amp {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Cormorant Garamond', 'Playfair Display', serif;
       color: var(--primary);
       font-size: 1.4rem;
       display: block;

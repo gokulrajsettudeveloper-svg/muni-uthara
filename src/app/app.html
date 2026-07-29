@@ -29,11 +29,9 @@
   <app-parents [parents]="data()!.parents"></app-parents>
   <app-invitation-card [couple]="data()!.couple" [venue]="data()!.venue" [events]="data()!.events"></app-invitation-card>
   <app-events [events]="data()!.events"></app-events>
-  <app-rsvp [whatsappNumber]="data()!.social.rsvpWhatsAppNumber"></app-rsvp>
   <app-venue [venue]="data()!.venue"></app-venue>
-  <app-friendship-tribute [friendName]="data()!.tribute.friendName" [photo]="data()!.tribute.photo" [message]="data()!.tribute.message"></app-friendship-tribute>
+  <app-rsvp [whatsappNumber]="data()!.social.rsvpWhatsAppNumber"></app-rsvp>
   <app-share></app-share>
-  <app-qr-code></app-qr-code>
   <app-footer [createdBy]="data()!.site.createdBy" [social]="data()!.social"></app-footer>
-  <app-music-player [tracks]="data()!.music.tracks"></app-music-player>
+  <app-music-player></app-music-player>
 }

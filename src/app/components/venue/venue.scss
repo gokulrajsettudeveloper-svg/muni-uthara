@@ -6,7 +6,7 @@
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.45), rgba(251, 228, 228, 0.5));
 
   .section-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
     color: var(--text);
     font-size: 2.2rem;
   }
@@ -34,7 +34,7 @@
       align-items: center;
       justify-content: center;
       animation: pin-bounce 2.4s ease-in-out infinite;
-      @include glow(16px, rgba(212, 175, 55, 0.45));
+      @include glow(16px, rgba(201, 168, 106, 0.45));
 
       i {
         transform: rotate(45deg);
@@ -62,7 +62,7 @@
     }
 
     h3 {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Cormorant Garamond', 'Playfair Display', serif;
       color: var(--text);
       margin-bottom: 1rem;
     }

@@ -10,7 +10,7 @@ import * as THREE from 'three';
  */
 
 /** Classic heart outline (traced in the shape's local XY plane) extruded into a soft 3D shape. */
-export function createHeartMesh(color = 0xd6536d, size = 1): THREE.Mesh {
+export function createHeartMesh(color = 0xa93b5c, size = 1): THREE.Mesh {
   const x = 0;
   const y = 0;
   const heartShape = new THREE.Shape();
@@ -47,7 +47,7 @@ export function createHeartMesh(color = 0xd6536d, size = 1): THREE.Mesh {
 }
 
 /** A simple wedding ring — a gold band with a small faceted gem, grouped so both move as one. */
-export function createRingMesh(goldColor = 0xd4af37, gemColor = 0xffffff, size = 1): THREE.Group {
+export function createRingMesh(goldColor = 0xc9a86a, gemColor = 0xffffff, size = 1): THREE.Group {
   const group = new THREE.Group();
 
   const band = new THREE.Mesh(

@@ -41,7 +41,7 @@
     stroke: var(--warm-gold);
     stroke-width: 1.6;
     stroke-dasharray: 180 435;
-    filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.65));
+    filter: drop-shadow(0 0 6px rgba(201, 168, 106, 0.65));
     opacity: 0.85;
   }
 
@@ -59,7 +59,7 @@
     stroke-width: 3;
     stroke-linecap: round;
     stroke-linejoin: round;
-    filter: drop-shadow(0 0 8px rgba(214, 83, 109, 0.7));
+    filter: drop-shadow(0 0 8px rgba(138, 35, 70, 0.7));
   }
 }
 
@@ -68,7 +68,7 @@
   font-weight: 400;
   font-size: clamp(2.4rem, 7vw, 3.4rem);
   color: var(--champagne);
-  text-shadow: 0 0 22px rgba(212, 175, 55, 0.5);
+  text-shadow: 0 0 22px rgba(201, 168, 106, 0.5);
   margin: 0 0 0.4rem;
 }
 

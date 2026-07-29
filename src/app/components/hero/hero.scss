@@ -24,21 +24,38 @@
     width: 100%;
     height: 100%;
     object-fit: cover; // natural proportions, no distortion
-    object-position: 38% 30%; // keeps the couple framed with faces uncropped
+    object-position: 50% 34%; // keeps the temple gopuram + sunset in frame
     z-index: 0;
   }
 
-  // WebGL night-sky scene (moon/stars/clouds) layered over the photo —
-  // skipped entirely on constrained devices (see hero.ts isConstrainedDevice).
-  app-hero-scene {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    display: block;
+  // The baked couple+temple composite is mobile-only; desktop uses the temple
+  // backdrop plus the live .hero-couple layer instead.
+  .hero-photo--mobile {
+    display: none;
   }
 
-  // Ambient DOM particle layers (fireflies/petals) — cheap enough to stay on
-  // even when the WebGL scene is skipped.
+  // The couple, composited over the temple on the left. Anchored to the
+  // bottom-left as a foreground figure; a soft shadow grounds them in the scene.
+  .hero-couple {
+    position: absolute;
+    left: clamp(-16px, 1vw, 40px);
+    bottom: 0;
+    height: min(94%, 940px);
+    width: auto;
+    max-width: 60%;
+    object-fit: contain;
+    object-position: bottom left;
+    z-index: 1;
+    filter: drop-shadow(0 26px 34px rgba(92, 23, 48, 0.3));
+    pointer-events: none;
+    // Dissolve the lower edge into the scene so the hip crop / watch cuff fade
+    // out gracefully instead of ending on a hard line.
+    -webkit-mask-image: linear-gradient(to bottom, #000 80%, transparent 98%);
+    mask-image: linear-gradient(to bottom, #000 80%, transparent 98%);
+  }
+
+  // Ambient DOM particle layers — fireflies read as the image's golden bokeh,
+  // petals continue its falling blossoms.
   .hero-fireflies,
   .hero-petals {
     position: absolute;
@@ -68,19 +85,19 @@
     z-index: 4;
     width: min(92vw, 440px);
     margin: 0;
-    right: -17vw; // push the panel right into the floral copy-space, clear of
-                  // the groom (desktop only — the mobile block re-anchors it
-                  // with position:absolute + right:4%)
+    right: -10vw; // push the panel right over the temple copy-space, clear of
+                  // the couple on the left — but leaving the top-right corner
+                  // free for the floating music player (desktop only)
     background:
       linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 0.16) 62%, rgba(255, 255, 255, 0) 85%),
       rgba(255, 250, 250, 0.58);
     backdrop-filter: blur(7px);
     -webkit-backdrop-filter: blur(7px);
-    border: 1px solid rgba(214, 83, 109, 0.22);
+    border: 1px solid rgba(138, 35, 70, 0.22);
     border-radius: 24px;
     padding: clamp(1.6rem, 5vw, 2.6rem) clamp(1.2rem, 4vw, 2rem);
     transform-style: preserve-3d;
-    box-shadow: 0 22px 60px rgba(61, 12, 31, 0.22);
+    box-shadow: 0 22px 60px rgba(92, 23, 48, 0.22);
     @include glow(20px, rgba(255, 255, 255, 0.22));
 
     // Floral accents framing the panel (matches the corner motif used across
@@ -129,7 +146,7 @@
   }
 
   .hero-names {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', 'Playfair Display', serif;
     font-size: clamp(1.5rem, 4.5vw, 2.4rem);
     font-weight: 600;
     margin-bottom: 0.5rem;
@@ -161,12 +178,12 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     font-size: 0.85rem;
-    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.4);
+    box-shadow: 0 8px 24px rgba(201, 168, 106, 0.4);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 
     &:hover {
       transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(212, 175, 55, 0.55);
+      box-shadow: 0 12px 30px rgba(201, 168, 106, 0.55);
       color: #fff;
     }
   }
@@ -181,7 +198,7 @@
     z-index: 5;
     animation: bounce 2s infinite;
     opacity: 0.9;
-    text-shadow: 0 2px 10px rgba(61, 12, 31, 0.45);
+    text-shadow: 0 2px 10px rgba(92, 23, 48, 0.45);
   }
 }
 
@@ -201,7 +218,12 @@
     // drop the full-bleed vignette — the photo no longer covers the whole hero
     &::before { display: none; }
 
-    .hero-photo {
+    // swap to the baked composite; hide the desktop temple + couple layer
+    .hero-photo--desktop,
+    .hero-couple { display: none; }
+
+    .hero-photo--mobile {
+      display: block;
       position: relative;
       inset: auto;
       flex: 1 1 0;            // grow to fill all spare height → no blank space
@@ -209,15 +231,16 @@
       width: 100%;
       height: auto;
       object-fit: cover;      // fill its box, faces kept in frame, never stretched
-      object-position: 35% 28%; // bias left of centre so BOTH faces stay visible
+      object-position: 50% 22%; // keep both faces + the gopuram in frame
       border-radius: 18px;
-      box-shadow: 0 16px 40px rgba(61, 12, 31, 0.16);
+      box-shadow: 0 16px 40px rgba(92, 23, 48, 0.16);
     }
 
-    // card below the photo, full width, re-centred (undo the desktop right-shift)
+    // card below the photo, full width, re-centred (undo the desktop left-shift)
     .hero-content {
       position: relative;
       inset: auto;
+      left: auto;
       right: auto;
       top: auto;
       transform: none;

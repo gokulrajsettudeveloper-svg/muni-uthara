@@ -1,25 +1,33 @@
-<div class="music-player">
-  <audio #audioRef (ended)="onEnded()" preload="auto"></audio>
+<div class="hero-music" [class.needs-enable]="music.needsEnable()">
+  <div class="hm-top">
+    <span class="hm-icon" aria-hidden="true"><i class="bi bi-music-note-beamed"></i></span>
+    <div class="hm-meta">
+      <p class="hm-title" [title]="music.trackTitle()">{{ music.trackTitle() }}</p>
+      <p class="hm-artist">{{ music.trackArtist() }}</p>
+    </div>
+    <i class="bi bi-music-note-list hm-list" aria-hidden="true"></i>
+  </div>
 
-  @if (needsEnable()) {
-    <button class="music-enable" (click)="enableSound()">
-      <i class="bi bi-music-note-beamed"></i> Tap to Enable Music
+  <div class="hm-controls">
+    <button class="hm-btn" type="button" (click)="music.prevTrack()" aria-label="Previous track">
+      <i class="bi bi-skip-start-fill"></i>
     </button>
-  }
-
-  <button
-    class="music-toggle"
-    [class.on]="isOn()"
-    (click)="toggle()"
-    [title]="isOn() ? 'Music on — tap to mute' : 'Music off — tap to play'"
-    [attr.aria-label]="isOn() ? 'Turn music off' : 'Turn music on'">
-    <span class="vinyl" aria-hidden="true">
-      <span class="vinyl-grooves"></span>
-      <span class="vinyl-label"><i class="bi bi-heart-fill"></i></span>
-      <span class="tonearm"></span>
-    </span>
-    <span class="equalizer" aria-hidden="true">
-      <span></span><span></span><span></span><span></span>
-    </span>
-  </button>
+    <button
+      class="hm-btn play"
+      type="button"
+      (click)="music.toggle()"
+      [attr.aria-label]="music.isOn() ? 'Pause music' : 'Play music'">
+      <i class="bi" [class.bi-pause-fill]="music.isOn()" [class.bi-play-fill]="!music.isOn()"></i>
+    </button>
+    <button class="hm-btn" type="button" (click)="music.nextTrack()" aria-label="Next track">
+      <i class="bi bi-skip-end-fill"></i>
+    </button>
+    <button
+      class="hm-btn"
+      type="button"
+      (click)="music.toggleMute()"
+      [attr.aria-label]="music.muted() ? 'Unmute' : 'Mute'">
+      <i class="bi" [class.bi-volume-up-fill]="!music.muted()" [class.bi-volume-mute-fill]="music.muted()"></i>
+    </button>
+  </div>
 </div>

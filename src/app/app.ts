@@ -1,6 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { SmoothScrollService } from './core/smooth-scroll.service';
+import { MusicService } from './core/music.service';
 import { WeddingDataService } from './services/wedding-data.service';
 import { WeddingData } from './models/wedding.model';
 import { AmbientBackground } from './core/ambient-background/ambient-background';
@@ -16,8 +17,6 @@ import { VenueSection } from './components/venue/venue';
 import { Rsvp } from './components/Rsvp/Rsvp';
 import { MusicPlayer } from './components/music-player/music-player';
 import { Share } from './components/share/share';
-import { QrCode } from './components/qr-code/qr-code';
-import { FriendshipTribute } from './components/friendship-tribute/friendship-tribute';
 import { Footer } from './components/footer/footer';
 
 @Component({
@@ -38,8 +37,6 @@ import { Footer } from './components/footer/footer';
     Rsvp,
     MusicPlayer,
     Share,
-    QrCode,
-    FriendshipTribute,
     Footer
   ],
   templateUrl: './app.html',
@@ -56,7 +53,8 @@ export class App implements OnInit {
 
   constructor(
     private weddingData: WeddingDataService,
-    private smoothScroll: SmoothScrollService
+    private smoothScroll: SmoothScrollService,
+    private music: MusicService
   ) {}
 
   /** Dismiss the intro. The tap itself is caught by the music player's
@@ -76,5 +74,6 @@ export class App implements OnInit {
     this.smoothScroll.init();
     const result = await this.weddingData.load();
     this.data.set(result);
+    this.music.init(result.music.tracks);
   }
 }

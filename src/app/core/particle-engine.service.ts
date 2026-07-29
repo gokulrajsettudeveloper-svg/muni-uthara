@@ -48,15 +48,15 @@ const AMBIENT_COUNTS: Record<ParticleDensity, number> = { low: 8, medium: 16, hi
 const PRESET_COLORS: Record<ParticlePreset, string[]> = {
   petals: ['#F6C9D6', '#F2A9C2', '#FBE4E4'],
   fireflies: ['#FFE9A8', '#FFF3C4', '#FFD98E'],
-  butterflies: ['#D6536D', '#B33951', '#F7E7CE'],
-  hearts: ['#D6536D', '#B76E79', '#F6C9D6'],
-  sparkles: ['#D4AF37', '#F7E7CE', '#FFFFFF'],
-  stars: ['#FFFFFF', '#F0EAE2', '#F7E7CE'],
+  butterflies: ['#A93B5C', '#8A2346', '#F1E3CB'],
+  hearts: ['#A93B5C', '#D8A47F', '#F6C9D6'],
+  sparkles: ['#C9A86A', '#F1E3CB', '#FFFFFF'],
+  stars: ['#FFFFFF', '#F0EAE2', '#F1E3CB'],
   lanterns: ['#FFB347', '#FFD27A', '#FFE9A8'],
   // One coordinated colour is picked per burst (not per-particle) so each
   // firework reads as a single elegant gold/rose bloom rather than a
   // scattershot of random hues.
-  fireworks: ['#D4AF37', '#D6536D', '#B76E79', '#F7E7CE'],
+  fireworks: ['#C9A86A', '#A93B5C', '#D8A47F', '#F1E3CB'],
 };
 
 const FIREWORK_GLITTER_COLOR = '#FFFDF8';

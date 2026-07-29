@@ -18,7 +18,7 @@ export function addAmbientLights(scene: THREE.Scene): void {
   pinkRim.position.set(-6, 2, -4);
   scene.add(pinkRim);
 
-  const goldA = new THREE.PointLight(0xd4af37, 0.5, 25);
+  const goldA = new THREE.PointLight(0xc9a86a, 0.5, 25);
   goldA.position.set(-5, 3, 2);
   scene.add(goldA);
 

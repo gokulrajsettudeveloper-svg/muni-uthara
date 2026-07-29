@@ -18,7 +18,7 @@ export class AmbientParticles {
   private readonly dummy = new THREE.Object3D();
 
   constructor(sparkleCount: number, dustCount: number, bubbleCount: number) {
-    this.sparkleBase = new THREE.Color('#D4AF37');
+    this.sparkleBase = new THREE.Color('#C9A86A');
 
     // ── Sparkles ──
     {

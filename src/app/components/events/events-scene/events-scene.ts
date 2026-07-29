@@ -51,9 +51,9 @@ export class EventsScene implements AfterViewInit, OnDestroy {
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
 
-    const colorA = new THREE.Color('#D4AF37'); // warm gold
-    const colorB = new THREE.Color('#B76E79'); // rose gold
-    const colorC = new THREE.Color('#F7E7CE'); // champagne
+    const colorA = new THREE.Color('#C9A86A'); // warm gold
+    const colorB = new THREE.Color('#D8A47F'); // rose gold
+    const colorC = new THREE.Color('#F1E3CB'); // champagne
 
     for (let i = 0; i < count; i++) {
       positions[i * 3] = rand(-9, 9);

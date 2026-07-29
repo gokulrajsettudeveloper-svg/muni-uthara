@@ -9,7 +9,10 @@ export interface Couple {
   bride: Person;
   groom: Person;
   hashtag: string;
+  /** Full-bleed hero backdrop (temple scene). */
   heroImage: string;
+  /** The couple's photo, composited over the backdrop on the hero's left side. */
+  couplePhoto?: string;
   weddingDate: string; // ISO string e.g. "2026-12-12T10:00:00"
   families: {
     brideFamily: string;

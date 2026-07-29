@@ -1,23 +1,5 @@
 <nav class="site-navbar" [class.nav-hidden]="hidden()">
   <div class="nav-inner">
     <span class="brand">M&nbsp;&amp;&nbsp;U</span>
-
-    <ul class="nav-links d-none d-md-flex">
-      @for (link of links; track link.target) {
-        <li><a (click)="scrollTo(link.target)">{{ link.label }}</a></li>
-      }
-    </ul>
-
-    <button class="burger d-md-none" (click)="toggle()">
-      <i class="bi" [class.bi-list]="!isOpen()" [class.bi-x-lg]="isOpen()"></i>
-    </button>
   </div>
-
-  @if (isOpen()) {
-    <ul class="nav-links-mobile d-md-none">
-      @for (link of links; track link.target) {
-        <li><a (click)="scrollTo(link.target)">{{ link.label }}</a></li>
-      }
-    </ul>
-  }
 </nav>

@@ -54,12 +54,12 @@ export class InvitationScene implements AfterViewInit, OnDestroy {
 
     // Luminous halo: two counter-rotating rings of golden sparkles, tilted
     // like a crown of light hovering behind the invitation panel.
-    this.haloOuter = this.makeSparkleRing(6.2, 90, '#D4AF37');
+    this.haloOuter = this.makeSparkleRing(6.2, 90, '#C9A86A');
     this.haloOuter.rotation.x = 1.15;
     this.haloOuter.position.set(0, 0.5, -5);
     scene.add(this.haloOuter);
 
-    this.haloInner = this.makeSparkleRing(4.6, 70, '#F7E7CE');
+    this.haloInner = this.makeSparkleRing(4.6, 70, '#F1E3CB');
     this.haloInner.rotation.x = 1.15;
     this.haloInner.position.set(0, 0.5, -5);
     scene.add(this.haloInner);
@@ -88,9 +88,9 @@ export class InvitationScene implements AfterViewInit, OnDestroy {
     const count = 70;
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
-    const colorA = new THREE.Color('#D4AF37');
-    const colorB = new THREE.Color('#D6536D');
-    const colorC = new THREE.Color('#F7E7CE');
+    const colorA = new THREE.Color('#C9A86A');
+    const colorB = new THREE.Color('#A93B5C');
+    const colorC = new THREE.Color('#F1E3CB');
     for (let i = 0; i < count; i++) {
       positions[i * 3] = rand(-11, 11);
       positions[i * 3 + 1] = rand(-6, 6);

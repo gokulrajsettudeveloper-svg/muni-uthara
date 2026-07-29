@@ -136,12 +136,12 @@ export class HeroScene implements AfterViewInit, OnDestroy {
     // Floating 3D heart + wedding ring — real dimensional objects (not just
     // flat sprites/particles), tucked into the background depth off to
     // either side so they never compete with the couple photo/text.
-    this.heart = createHeartMesh(0xd6536d, 1.7);
+    this.heart = createHeartMesh(0xa93b5c, 1.7);
     this.heart.position.set(-6.5, -2.5, -9);
     this.heart.rotation.x = 0.15;
     scene.add(this.heart);
 
-    this.ring = createRingMesh(0xd4af37, 0xffffff, 2.1);
+    this.ring = createRingMesh(0xc9a86a, 0xffffff, 2.1);
     this.ring.position.set(6.5, -1.5, -7);
     this.ring.rotation.x = Math.PI / 2.6;
     scene.add(this.ring);
