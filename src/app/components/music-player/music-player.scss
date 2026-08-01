@@ -19,6 +19,21 @@
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(216, 164, 127, 0.55);
   box-shadow: 0 18px 45px rgba(92, 23, 48, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+
+  // Draggable: grab anywhere on the card (buttons keep their own cursor),
+  // drag with mouse or touch, and don't let a touch-drag scroll the page.
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+  &.dragging {
+    cursor: grabbing;
+    transform: scale(1.03);
+    box-shadow: 0 26px 60px rgba(92, 23, 48, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transition: none; // follow the pointer 1:1 while dragging
+  }
 }
 
 .hm-top {

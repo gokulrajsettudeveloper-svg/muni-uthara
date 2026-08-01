@@ -1,4 +1,14 @@
-<div class="hero-music" [class.needs-enable]="music.needsEnable()">
+<div
+  class="hero-music"
+  [class.needs-enable]="music.needsEnable()"
+  [class.dragging]="dragging()"
+  [style.left.px]="pos()?.x"
+  [style.top.px]="pos()?.y"
+  [style.right]="pos() ? 'auto' : null"
+  (pointerdown)="onPointerDown($event)"
+  (pointermove)="onPointerMove($event)"
+  (pointerup)="onPointerUp($event)"
+  (pointercancel)="onPointerUp($event)">
   <div class="hm-top">
     <span class="hm-icon" aria-hidden="true"><i class="bi bi-music-note-beamed"></i></span>
     <div class="hm-meta">
